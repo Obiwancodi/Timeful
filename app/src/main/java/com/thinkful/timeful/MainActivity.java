@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,14 +22,21 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TaskListAdapter mAdapter;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-       // mLayoutManager = new LinearLayoutManager(this);
-       // mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mLayoutManager = new LinearLayoutManager(this);
+       mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new TaskListAdapter(this, mRecyclerView);
+        mRecyclerView.setAdapter(mAdapter);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.i("CurrentUserMain", "" + ParseUser.getCurrentUser().getObjectId());
@@ -79,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, CreateTaskActivity.class);
         this.startActivity(intent);
+
     }
+
+
 
 }

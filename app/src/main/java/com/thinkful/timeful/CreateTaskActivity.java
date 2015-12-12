@@ -91,8 +91,8 @@ public class CreateTaskActivity extends AppCompatActivity {
 
             // long milliseconds = calendar.getTimeInMillis();
 
-         //   tasks.saveInBackground();
-         //   this.backToMain();
+            tasks.saveInBackground();
+           this.backToMain();
         } else {
             // show the signup or login screen
         }
