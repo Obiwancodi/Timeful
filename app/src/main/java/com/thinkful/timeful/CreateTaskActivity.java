@@ -1,5 +1,8 @@
 package com.thinkful.timeful;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +24,8 @@ import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CreateTaskActivity extends AppCompatActivity {
 
@@ -30,6 +35,7 @@ public class CreateTaskActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
     private Switch noteSwitch;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +58,8 @@ public class CreateTaskActivity extends AppCompatActivity {
         this.noteSwitch = (Switch) this.findViewById(R.id.noteSwitch);
     }
 
-    public void onCreateTaskButtonPushed(View v) {
-
+    public void onCreateTaskButtonPushed(View v)
+    {
         TextView taskNameTV = (TextView) this.findViewById(R.id.TaskName);
         TextView taskDesTV = (TextView) this.findViewById(R.id.TaskDescription);
         TextView taskDateTV = (TextView) this.findViewById(R.id.TaskDate);
@@ -81,23 +87,25 @@ public class CreateTaskActivity extends AppCompatActivity {
 
 
 
-            DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
-            String myDate = taskDateTV.getText().toString();
-            Log.i("DATE STRING", myDate);
-
-            // Calendar calendar = Calendar.getInstance();
-            //calendar.setTimeInMillis(System.currentTimeMillis());
-
-            // long milliseconds = calendar.getTimeInMillis();
 
             tasks.saveInBackground();
-           this.backToMain();
-        } else {
+            Log.i("TASK", tasks.getName());
+            Intent aIntent = new Intent(this, TimefulCalActivity.class);
+            aIntent.putExtra("Task", tasks);
+            this.startActivityForResult(aIntent, 1);
+
+        }
+        else
+        {
             // show the signup or login screen
         }
 
+
+
+
     }
+
+
 
 
 
@@ -106,43 +114,5 @@ public class CreateTaskActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CreateTask Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.thinkful.timeful/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "CreateTask Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.thinkful.timeful/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }

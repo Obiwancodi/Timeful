@@ -4,10 +4,12 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @ParseClassName("Tasks")
-public class Tasks extends ParseObject {
+public class Tasks extends ParseObject  implements Serializable
+{
 
 
     public String getName() {
@@ -35,13 +37,13 @@ public class Tasks extends ParseObject {
     }
 
 
-   // public Date getEnd () {
-  //      return getDate("end");
-  //  }
+    public Date getEnd () {
+        return getDate("end");
+   }
 
-  //  public void setEnd (Date date) {
-   //     put("Date", date);
-  //  }
+   public void setEnd (Date date) {
+        put("date", date);
+   }
 
 
     public ParseUser getUser () {
