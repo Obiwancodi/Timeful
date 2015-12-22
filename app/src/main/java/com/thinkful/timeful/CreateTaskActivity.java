@@ -88,7 +88,8 @@ public class CreateTaskActivity extends AppCompatActivity {
 
 
 
-            tasks.saveInBackground();
+          //  tasks.saveInBackground();
+            TimefulCore.inprogressTask = tasks;
             Log.i("TASK", tasks.getName());
             Intent aIntent = new Intent(this, TimefulCalActivity.class);
             aIntent.putExtra("Task", tasks);

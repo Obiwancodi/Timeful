@@ -1,5 +1,6 @@
 package com.thinkful.timeful;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
@@ -28,14 +29,12 @@ import bolts.Task;
 
 public class TimefulCalActivity extends AppCompatActivity
 {
-    private Tasks tasks;
     private TimePicker timePicker;
     private int y;
     private int mon;
     private int d;
     private int hour;
     private int min;
-    private View v;
     private List userTasks;
 
 
@@ -43,8 +42,6 @@ public class TimefulCalActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeful_cal);
-       // queryTasks(v);
-        queryUserTasks(v);
         this.initCal();
         timePicker = (TimePicker) findViewById(R.id.timePicker);
 
@@ -89,50 +86,15 @@ public class TimefulCalActivity extends AppCompatActivity
         hour = timePicker.getCurrentHour();
         min = timePicker.getCurrentMinute();
         Calendar c = Calendar.getInstance();
-        c.set(y,mon,d,hour,min);
+        c.set(y, mon, d, hour, min);
         Date theDate = c.getTime();
-        tasks.setEnd(theDate);
-        tasks.saveInBackground();
-
+        TimefulCore.inprogressTask.setEnd(theDate);
+        TimefulCore.inprogressTask.saveInBackground();
+        TimefulCore.isSaved = true;
         Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
-  /*  public void queryTasks(View v) {
 
-        ParseQuery<ParseObject> taskQuery = ParseQuery.getQuery("Tasks");
-        taskQuery.whereEqualTo("createdBy", ParseUser.getCurrentUser());
-
-        taskQuery.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> taskList, ParseException e) {
-                if (e == null) {
-                    Log.i("tasks", "Retrieved " + taskList.size() + " tasks");
-                    userTasks = taskList;
-
-                } else {
-                    Log.i("tasks", "Error: " + e.getMessage());
-                }
-            }
-        });
-
-
-    }
-    */
-
-    public void queryUserTasks(View v)
-    {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Tasks");
-        query.orderByDescending("updatedAt");
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            public void done(ParseObject object, ParseException e) {
-                if (object == null) {
-                    Log.i("ERROR", "IT DID NOT WORK");
-                } else {
-                    tasks = (Tasks)object;
-                }
-            }
-        });
-
-
-    }
 }

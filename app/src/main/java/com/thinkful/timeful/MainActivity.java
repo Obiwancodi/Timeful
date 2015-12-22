@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,10 +32,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
         mLayoutManager = new LinearLayoutManager(this);
        mRecyclerView.setLayoutManager(mLayoutManager);
+        
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+
         mAdapter = new TaskListAdapter(this, mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
+
+        System.out.println("ON CREATE!!!!!");
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,11 +60,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();
 
 
+
+
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if (TimefulCore.inprogressTask != null && TimefulCore.isSaved)
+        {
+            this.mAdapter.addTask(TimefulCore.inprogressTask);
+            this.mRecyclerView.requestLayout();
+            this.mAdapter.notifyDataSetChanged();
+
+
+        }
+        TimefulCore.inprogressTask = null;
+        TimefulCore.isSaved = false;
+        System.out.println("ON RESUME!!!!!");
 
     }
 
@@ -86,9 +109,13 @@ public class MainActivity extends AppCompatActivity {
     public void createTaskPush(View v)
     {
         Intent intent = new Intent(this, CreateTaskActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        intent.setFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         this.startActivity(intent);
 
     }
+
+
 
 
 

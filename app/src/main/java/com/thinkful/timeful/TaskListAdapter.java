@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -24,20 +25,26 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     private Context mContext;
     private RecyclerView mRecyclerView;
-    private View v;
+  //  private View v;
     private List<ParseObject> userTasks;
-
+    private Tasks task;
+    private int thing;
 
     public TaskListAdapter(Context context, RecyclerView recyclerView) {
         this.mContext = context;
         this.mRecyclerView = recyclerView;
-        queryTasks(v);
+        queryTasks();
+
     }
 
 
+    public void addTask(Tasks task)
+    {
+        this.userTasks.add(task);
+    }
 
 
-    public void queryTasks(View v) {
+    public void queryTasks() {
 
         ParseQuery<ParseObject> taskQuery = ParseQuery.getQuery("Tasks");
         taskQuery.whereEqualTo("createdBy", ParseUser.getCurrentUser());
@@ -57,10 +64,20 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     }
 
 
-
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public TaskListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.tasks_list, viewGroup, false);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(mRecyclerView.getChildLayoutPosition(v));
+              int position =  mRecyclerView.getChildLayoutPosition(v);
+                ParseObject task = userTasks.get(position);
+                Tasks realTask = (Tasks) task;
+                realTask.deleteInBackground();
+                notifyItemRemoved(position);
+            }
+        });
         return new ViewHolder(v);
     }
 
@@ -83,6 +100,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     }
 
+
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text;
 
@@ -95,4 +115,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             this.text.setText(text);
         }
     }
+
+
 }
