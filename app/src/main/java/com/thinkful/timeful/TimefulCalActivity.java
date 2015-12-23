@@ -20,6 +20,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class TimefulCalActivity extends AppCompatActivity
    {
        CalendarView cv = (CalendarView) this.findViewById(R.id.calendarView);
        cv.setFirstDayOfWeek(1);
+       
        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
            @Override
            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {

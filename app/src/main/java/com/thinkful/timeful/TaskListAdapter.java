@@ -1,5 +1,7 @@
 package com.thinkful.timeful;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,6 +78,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                 Tasks realTask = (Tasks) task;
                 realTask.deleteInBackground();
                 notifyItemRemoved(position);
+            }
+        });
+
+        v.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                int position =  mRecyclerView.getChildLayoutPosition(v);
+                ParseObject task = userTasks.get(position);
+                Tasks editTask = (Tasks) task;
+                TimefulCore.inprogressTask = editTask;
+                Intent intent = new Intent(mContext, EditTaskActivity.class);
+                intent.putExtra("Task", editTask);
+                ((Activity)mContext).startActivityForResult(intent, 1);
+                System.out.println(editTask.getName());
+                return true;
             }
         });
         return new ViewHolder(v);

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
        mRecyclerView.setLayoutManager(mLayoutManager);
-        
+
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         mAdapter = new TaskListAdapter(this, mRecyclerView);

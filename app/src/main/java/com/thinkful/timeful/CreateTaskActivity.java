@@ -62,7 +62,7 @@ public class CreateTaskActivity extends AppCompatActivity {
     {
         TextView taskNameTV = (TextView) this.findViewById(R.id.TaskName);
         TextView taskDesTV = (TextView) this.findViewById(R.id.TaskDescription);
-        TextView taskDateTV = (TextView) this.findViewById(R.id.TaskDate);
+
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null)
@@ -74,11 +74,13 @@ public class CreateTaskActivity extends AppCompatActivity {
              if (this.noteSwitch.isChecked())
              {
                  tasks.setNote("yes");
+                 /*
                  final ViewGroup rootFrameLayout = (ViewGroup) this.getWindow().peekDecorView();
                  LayoutInflater li = LayoutInflater.from(this);
                  View noteview = li.inflate(R.layout.switchonform, null);
                  LinearLayout placeHolder = (LinearLayout)this.findViewById(R.id.placeHolderLayout);
                  placeHolder.addView(noteview);
+                 */
              }
             else
              {
@@ -88,7 +90,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
 
 
-          //  tasks.saveInBackground();
+
             TimefulCore.inprogressTask = tasks;
             Log.i("TASK", tasks.getName());
             Intent aIntent = new Intent(this, TimefulCalActivity.class);
