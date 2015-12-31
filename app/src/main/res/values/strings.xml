@@ -17,4 +17,7 @@
     </string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_task">CreateTaskActivity</string>
+    <string name="complete_task_dialog">Are you sure you want to complete the task?</string>
+    <string name="complete_task_yes">Yes</string>
+    <string name="complete_task_no">No</string>
 </resources>

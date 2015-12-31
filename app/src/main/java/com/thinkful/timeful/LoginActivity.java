@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Log.i("LOGIN", "" + user.getObjectId());
                     Log.i("CurrentUser", "" + ParseUser.getCurrentUser().getObjectId());
+                    TimefulCore.currentUser =  user;
                     loginPush();
                 }
 

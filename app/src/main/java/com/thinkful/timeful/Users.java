@@ -10,17 +10,17 @@ import java.util.UUID;
 public class Users extends ParseUser{
 
     public Users() {
-        put("exp", 0);
+        put("Exp", 0);
     }
 
-    public int getWallet() {
-        return getInt("exp");
+    public int getExp() {
+        return getInt("Exp");
     }
 
-        public void addWallet(int exp) {
-        exp = getInt("exp") + exp;
-        put("exp", exp
-        );
+        public void addExp (int exp)
+        {
+        exp = getInt("Exp") + exp;
+        put("Exp", exp);
 
     }
 

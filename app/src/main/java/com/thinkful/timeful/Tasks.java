@@ -45,6 +45,15 @@ public class Tasks extends ParseObject  implements Serializable
         put("date", date);
    }
 
+    public boolean getCompleted()
+    {
+        return this.getBoolean("Completed");
+    }
+
+    public void setCompleted(boolean b)
+    {
+        this.put("Completed", b);
+    }
 
     public ParseUser getUser () {
         return getParseUser("createdBy");

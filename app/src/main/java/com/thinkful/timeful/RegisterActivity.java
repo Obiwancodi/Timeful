@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         TextView confirmPasswordTV = (TextView) this.findViewById(R.id.registerConfirmPassword);
 
 
-        ParseUser user = new ParseUser();
+        Users user = new Users();
         user.setUsername( usernameTV.getText().toString());
         user.setEmail(emailTV.getText().toString());
 

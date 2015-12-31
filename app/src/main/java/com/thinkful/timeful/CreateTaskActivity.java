@@ -71,6 +71,7 @@ public class CreateTaskActivity extends AppCompatActivity {
             tasks.setUser(ParseUser.getCurrentUser());
             tasks.setName(taskNameTV.getText().toString());
             tasks.setDesript(taskDesTV.getText().toString());
+            tasks.setCompleted(false);
              if (this.noteSwitch.isChecked())
              {
                  tasks.setNote("yes");

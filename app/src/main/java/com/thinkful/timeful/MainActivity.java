@@ -1,5 +1,9 @@
 package com.thinkful.timeful;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.DialogInterface;
+
 
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -24,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private TaskListAdapter mAdapter;
+
 
 
     @Override
@@ -38,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        mAdapter = new TaskListAdapter(this, mRecyclerView);
-        mRecyclerView.setAdapter(mAdapter);
+        TimefulCore.staticAdapter = new TaskListAdapter(this, mRecyclerView);
+        mRecyclerView.setAdapter(TimefulCore.staticAdapter);
+        //TimefulCore.staticAdapter = mAdapter;
+        getFrag();
+
+
+
 
         System.out.println("ON CREATE!!!!!");
 
@@ -64,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
 
     @Override
@@ -72,9 +85,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (TimefulCore.inprogressTask != null && TimefulCore.isSaved)
         {
-            this.mAdapter.addTask(TimefulCore.inprogressTask);
+            TimefulCore.staticAdapter.addTask(TimefulCore.inprogressTask);
             this.mRecyclerView.requestLayout();
-            this.mAdapter.notifyDataSetChanged();
+            TimefulCore.staticAdapter.notifyDataSetChanged();
+
 
 
         }
@@ -114,6 +128,18 @@ public class MainActivity extends AppCompatActivity {
         this.startActivity(intent);
 
     }
+
+
+
+
+
+    public void getFrag()
+    {
+        TimefulCore.frag = getFragmentManager();
+
+
+    }
+
 
 
 
