@@ -63,6 +63,15 @@ public class Tasks extends ParseObject  implements Serializable
         put("createdBy", parseUser);
     }
 
+    public String getSkill () {
+        return getString("skill");
+    }
+
+    public void setSkill (String string)
+    {
+        put("skill", string);
+    }
+
 
 
 

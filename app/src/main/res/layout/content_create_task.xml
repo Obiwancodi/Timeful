@@ -38,7 +38,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Task Name"
         android:id="@+id/textView2"
-        android:layout_marginTop="35dp"
         android:textSize="20dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
@@ -70,9 +69,10 @@
         android:id="@+id/noteSwitch"
         android:textOff="Off"
         android:textOn="On"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignRight="@+id/TaskDescription"
-        android:layout_alignEnd="@+id/TaskDescription" />
+        android:layout_below="@+id/textView4"
+        android:layout_toRightOf="@+id/button2"
+        android:layout_toEndOf="@+id/button2"
+        android:layout_marginTop="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,10 +80,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Notifications"
         android:id="@+id/textView4"
-        android:layout_marginTop="53dp"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/radioGroup"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -91,64 +90,77 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Experience Points"
         android:id="@+id/textView5"
-        android:layout_below="@+id/noteSwitch"
+        android:layout_above="@+id/button2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Insert Exp Points"
         android:id="@+id/textView6"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignRight="@+id/noteSwitch"
-        android:layout_alignEnd="@+id/noteSwitch"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignRight="@+id/TaskDescription"
+        android:layout_alignEnd="@+id/TaskDescription" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/button2"
-        android:layout_below="@+id/textView6"
+        android:onClick="onCreateTaskButtonPushed"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/textView3"
         android:layout_toEndOf="@+id/textView3"
-        android:onClick="onCreateTaskButtonPushed" />
+        android:layout_marginBottom="78dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fitness"
+            android:id="@+id/fitnessRadio" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Career/School"
+            android:id="@+id/careerRadio" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Social"
+            android:id="@+id/socialRadio" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hobbies"
+            android:id="@+id/hobbiesRadio"
+            android:layout_alignBottom="@+id/radioGroup"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Task End Date and Time"
+        android:text="Task Skill"
         android:id="@+id/textView7"
         android:layout_below="@+id/TaskDescription"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/TaskDate"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/textView5"
-        android:layout_alignEnd="@+id/textView5"
-        android:layout_above="@+id/noteSwitch" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/noteSwitch"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/textView6"
-        android:layout_alignRight="@+id/TaskDescription"
-        android:layout_alignEnd="@+id/TaskDescription"
-        android:id="@+id/placeHolderLayout"
-        android:filterTouchesWhenObscured="false"></LinearLayout>
+        android:layout_marginTop="26dp" />
 
 </RelativeLayout>

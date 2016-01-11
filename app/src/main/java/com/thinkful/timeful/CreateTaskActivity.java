@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ public class CreateTaskActivity extends AppCompatActivity {
     private GoogleApiClient client;
     private Switch noteSwitch;
     private Context mContext;
+    private RadioGroup mRadioGroup;
+    private String taskSkill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,34 @@ public class CreateTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.fitnessRadio)
+                {
+                    taskSkill = "fit";
+                }
+                else if (checkedId == R.id.socialRadio)
+                {
+                    taskSkill = "social";
+                    System.out.println("Social WORKS");
+                }
+                else if (checkedId == R.id.careerRadio)
+                {
+                    taskSkill = "career";
+                }
+                else if (checkedId== R.id.hobbiesRadio)
+                {
+                    taskSkill = "hobbies";
+                }
+                else
+                {
+                    taskSkill = "n/a";
+                }
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +103,7 @@ public class CreateTaskActivity extends AppCompatActivity {
             tasks.setName(taskNameTV.getText().toString());
             tasks.setDesript(taskDesTV.getText().toString());
             tasks.setCompleted(false);
+            tasks.setSkill(taskSkill);
              if (this.noteSwitch.isChecked())
              {
                  tasks.setNote("yes");

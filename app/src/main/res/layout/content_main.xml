@@ -15,7 +15,16 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="206dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/expBar"
+            android:max="400"
+            android:layout_gravity="center_horizontal" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -39,4 +48,5 @@
         android:layout_marginStart="43dp"
         android:layout_marginBottom="61dp"
         android:layout_gravity="center_horizontal" />
+
 </RelativeLayout>

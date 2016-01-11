@@ -2,6 +2,7 @@ package com.thinkful.timeful;
 
 
 import android.app.FragmentManager;
+import android.widget.ProgressBar;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -22,6 +23,8 @@ public class TimefulCore
     static FragmentManager frag;
 
     static  TaskListAdapter staticAdapter;
+
+    static ProgressBar staticProgress;
 
 
 

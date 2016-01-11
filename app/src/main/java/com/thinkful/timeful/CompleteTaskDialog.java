@@ -36,12 +36,14 @@ public class CompleteTaskDialog extends DialogFragment {
                         realTask.setCompleted(true);
                         realTask.saveInBackground();
                         TimefulCore.userTasks.remove(realTask);
-                        TimefulCore.currentUser.put("Exp", 5 + TimefulCore.currentUser.getInt("Exp"));
+                        TimefulCore.currentUser.put("Exp", 15 + TimefulCore.currentUser.getInt("Exp"));
                         TimefulCore.currentUser.saveInBackground();
                         TimefulCore.isSaved = true;
                         TimefulCore.inprogressTask = realTask;
                         System.out.println(realTask.getCompleted());
-                        TimefulCore.staticAdapter.notifyItemRemoved(TimefulCore.thing);
+                        TimefulCore.staticAdapter.notifyDataSetChanged();
+                        TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
+
 
 
 

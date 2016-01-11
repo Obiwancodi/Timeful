@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,12 +14,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.DialogInterface;
+import android.widget.ProgressBar;
 
 
 import com.parse.Parse;
@@ -30,6 +33,31 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private TaskListAdapter mAdapter;
+    private ProgressBar mProgressBar;
+
+    private static class UpdateLay extends LinearLayoutManager {
+
+        @Override
+        public boolean supportsPredictiveItemAnimations() {
+            return false;
+        }
+
+        public UpdateLay(Context context)
+        {
+            super(context);
+        }
+
+        public UpdateLay(Context context, int orientation, boolean reverseLayout)
+        {
+            super(context,orientation,reverseLayout);
+        }
+
+        public UpdateLay(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
+        {
+            super(context,attrs,defStyleAttr,defStyleRes);
+        }
+
+    }
 
 
 
@@ -40,15 +68,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new UpdateLay(this);
        mRecyclerView.setLayoutManager(mLayoutManager);
 
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         TimefulCore.staticAdapter = new TaskListAdapter(this, mRecyclerView);
         mRecyclerView.setAdapter(TimefulCore.staticAdapter);
-        //TimefulCore.staticAdapter = mAdapter;
         getFrag();
+
+      int userExp = (int) TimefulCore.currentUser.get("Exp");
+
+       TimefulCore.staticProgress = (ProgressBar) findViewById(R.id.expBar);
+        TimefulCore.staticProgress.setProgress(userExp);
 
 
 
@@ -83,11 +115,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
+        this.mRecyclerView.requestLayout();
+        int userExp = (int) TimefulCore.currentUser.get("Exp");
+        TimefulCore.staticProgress.setProgress(userExp);
         if (TimefulCore.inprogressTask != null && TimefulCore.isSaved)
         {
             TimefulCore.staticAdapter.addTask(TimefulCore.inprogressTask);
             this.mRecyclerView.requestLayout();
             TimefulCore.staticAdapter.notifyDataSetChanged();
+            TimefulCore.staticProgress.setProgress(userExp);
+
+
 
 
 
