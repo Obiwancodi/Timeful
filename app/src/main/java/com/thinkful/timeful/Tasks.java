@@ -38,7 +38,7 @@ public class Tasks extends ParseObject  implements Serializable
 
 
     public Date getEnd () {
-        return getDate("end");
+        return getDate("date");
    }
 
    public void setEnd (Date date) {
@@ -70,6 +70,28 @@ public class Tasks extends ParseObject  implements Serializable
     public void setSkill (String string)
     {
         put("skill", string);
+    }
+
+    public Date getRepeat()
+    {
+        return  getDate("repeat");
+    }
+
+    public void setRepeat (Date date)
+    {
+        put("repeat", date);
+    }
+
+    public void setReType (String string)
+
+    {
+        put("repeatType", string);
+    }
+
+    public String getReType()
+
+    {
+        return getString("repeatType");
     }
 
 

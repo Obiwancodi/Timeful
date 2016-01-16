@@ -12,16 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
+
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class CompleteTaskDialog extends DialogFragment {
 
-   /* @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.complete_task_dialog,null);
-    }
-    */
+    Date date;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -44,6 +44,31 @@ public class CompleteTaskDialog extends DialogFragment {
                         TimefulCore.staticAdapter.notifyDataSetChanged();
                         TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
 
+                        if (realTask.getRepeat() != null)
+                        {
+                            Tasks tasks = new Tasks();
+                            tasks.setUser(ParseUser.getCurrentUser());
+                            tasks.setName(realTask.getName());
+                            tasks.setDesript(realTask.getDesript());
+                            tasks.setCompleted(false);
+                            tasks.setSkill(realTask.getSkill());
+                            tasks.setEnd(realTask.getRepeat());
+                            String type = realTask.getReType();
+
+                            if (type.equals("day"))
+                            {
+                                date = realTask.getRepeat();
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(date);
+                                c.add(Calendar.DATE, 1);
+                                date = c.getTime();
+                                tasks.setRepeat(date);
+                                tasks.setReType("day");
+                            }
+
+                            tasks.saveInBackground();
+                            TimefulCore.staticAdapter.notifyDataSetChanged();
+                        }
 
 
 

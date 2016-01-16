@@ -3,6 +3,7 @@ package com.thinkful.timeful;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class TimefulCalActivity extends AppCompatActivity
     private int hour;
     private int min;
     private List userTasks;
+    FragmentManager frag;
 
 
     @Override
@@ -45,6 +47,7 @@ public class TimefulCalActivity extends AppCompatActivity
         setContentView(R.layout.activity_timeful_cal);
         this.initCal();
         timePicker = (TimePicker) findViewById(R.id.timePicker);
+        TimefulCore.mContext =this;
 
     }
 
@@ -89,13 +92,25 @@ public class TimefulCalActivity extends AppCompatActivity
         min = timePicker.getCurrentMinute();
         Calendar c = Calendar.getInstance();
         c.set(y, mon, d, hour, min);
-        Date theDate = c.getTime();
-        TimefulCore.inprogressTask.setEnd(theDate);
+        TimefulCore.theDate= c.getTime();
+        TimefulCore.inprogressTask.setEnd(TimefulCore.theDate);
         TimefulCore.inprogressTask.saveInBackground();
         TimefulCore.isSaved = true;
-        Intent intent = new Intent(this, MainActivity.class);
+        showDialog();
+       /* Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
+        */
+    }
+
+
+    public void showDialog()
+    {
+        frag  = getFragmentManager();
+        RepeatingTaskDialog dialog = new RepeatingTaskDialog();
+        dialog.show(frag, "DIALOG");
+
+
     }
 
 

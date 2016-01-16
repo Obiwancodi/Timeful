@@ -2,11 +2,13 @@ package com.thinkful.timeful;
 
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.widget.ProgressBar;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 public class TimefulCore
@@ -25,6 +27,11 @@ public class TimefulCore
     static  TaskListAdapter staticAdapter;
 
     static ProgressBar staticProgress;
+
+    static Context mContext;
+
+    static Date theDate;
+
 
 
 
