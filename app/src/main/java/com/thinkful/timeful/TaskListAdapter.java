@@ -37,7 +37,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     private RecyclerView mRecyclerView;
     private Tasks task;
     private int thing;
-    //private  CompleteTaskDialog mDialong = new CompleteTaskDialog();
+
 
 
     public TaskListAdapter(Context context, RecyclerView recyclerView) {

@@ -28,7 +28,7 @@ public class TimefulCore
 
     static ProgressBar staticProgress;
 
-    static Context mContext;
+    static Context mContext; // for TimefulCalActivity context
 
     static Date theDate;
 

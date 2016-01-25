@@ -33,6 +33,7 @@ public class CompleteTaskDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
                         ParseObject task = TimefulCore.userTasks.get(TimefulCore.thing);
                         Tasks realTask = (Tasks) task;
+                        System.out.println(realTask.getName());
                         realTask.setCompleted(true);
                         realTask.saveInBackground();
                         TimefulCore.userTasks.remove(realTask);
@@ -41,15 +42,16 @@ public class CompleteTaskDialog extends DialogFragment {
                         TimefulCore.isSaved = true;
                         TimefulCore.inprogressTask = realTask;
                         System.out.println(realTask.getCompleted());
-                        TimefulCore.staticAdapter.notifyDataSetChanged();
                         TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
 
                         if (realTask.getRepeat() != null)
                         {
+
                             Tasks tasks = new Tasks();
                             tasks.setUser(ParseUser.getCurrentUser());
                             tasks.setName(realTask.getName());
                             tasks.setDesript(realTask.getDesript());
+                            tasks.setNote(realTask.getNote());
                             tasks.setCompleted(false);
                             tasks.setSkill(realTask.getSkill());
                             tasks.setEnd(realTask.getRepeat());
@@ -66,7 +68,31 @@ public class CompleteTaskDialog extends DialogFragment {
                                 tasks.setReType("day");
                             }
 
+                            else if (type.equals("week"))
+                            {
+                                date =realTask.getRepeat();
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(date);
+                                c.add(Calendar.DATE, 7);
+                                date = c.getTime();
+                                tasks.setRepeat(date);
+                                tasks.setReType("week");
+                            }
+
+                            else if (type.equals("month"))
+                            {
+                                date =realTask.getRepeat();
+                                Calendar c = Calendar.getInstance();
+                                c.setTime(date);
+                                c.add(Calendar.MONTH, 1);
+                                date = c.getTime();
+                                tasks.setRepeat(date);
+                                tasks.setReType("month");
+
+                            }
+
                             tasks.saveInBackground();
+                            TimefulCore.staticAdapter.addTask(tasks);
                             TimefulCore.staticAdapter.notifyDataSetChanged();
                         }
 
