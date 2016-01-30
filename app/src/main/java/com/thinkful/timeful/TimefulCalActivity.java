@@ -65,27 +65,7 @@ public class TimefulCalActivity extends AppCompatActivity
            }
        });
    }
-/*
-    public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
 
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
-        }
-
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        }
-    }
-*/
     public void finishButtonClicked(View v)
     {
         hour = timePicker.getCurrentHour();
@@ -97,10 +77,6 @@ public class TimefulCalActivity extends AppCompatActivity
         TimefulCore.inprogressTask.saveInBackground();
         TimefulCore.isSaved = true;
         showDialog();
-       /* Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        */
     }
 
 

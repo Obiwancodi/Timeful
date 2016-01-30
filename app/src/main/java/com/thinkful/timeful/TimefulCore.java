@@ -32,6 +32,8 @@ public class TimefulCore
 
     static Date theDate;
 
+    static Date theStartDate;
+
 
 
 

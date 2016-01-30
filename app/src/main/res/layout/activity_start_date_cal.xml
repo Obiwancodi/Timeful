@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.thinkful.timeful.TimefulCalActivity">
+    tools:context="com.thinkful.timeful.StartDateCalActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -18,15 +18,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="End Date"
-            android:id="@+id/endDateText"
-            android:layout_gravity="center_horizontal"
-            android:textSize="30dp" />
+            android:text="Start Date"
+            android:id="@+id/startDateText"
+            android:layout_gravity="center_horizontal" />
 
         <CalendarView
             android:layout_width="match_parent"
             android:layout_height="311dp"
-            android:id="@+id/calendarView"
+            android:id="@+id/calendarViewStart"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -40,16 +39,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Submit"
-            android:id="@+id/finishButton"
+            android:id="@+id/startButton"
             android:layout_gravity="right"
-            android:onClick="finishButtonClicked"
+            android:onClick="startButtonClicked"
             android:nestedScrollingEnabled="false" />
 
         <TimePicker
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/timePicker"
+            android:id="@+id/timePickerStart"
             android:timePickerMode="spinner" />
+
     </LinearLayout>
 
 </RelativeLayout>

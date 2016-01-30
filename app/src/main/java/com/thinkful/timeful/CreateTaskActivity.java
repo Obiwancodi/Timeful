@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -22,6 +23,14 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.ParseUser;
+import android.widget.SeekBar;
+
+import android.widget.SeekBar.OnSeekBarChangeListener;
+
+import android.widget.TextView;
+
+import android.widget.Toast;
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,15 +39,20 @@ import java.util.Date;
 
 public class CreateTaskActivity extends AppCompatActivity {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+
     private GoogleApiClient client;
     private Switch noteSwitch;
     private Context mContext;
     private RadioGroup mRadioGroup;
     private String taskSkill;
+    private SeekBar diffucltySeekBar;
+    private TextView diffExp;
+    private TextView expText;
+    private TextView skillText;
+    private int exp;
+    private int skillExp;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,47 +61,84 @@ public class CreateTaskActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        diffucltySeekBar = (SeekBar) findViewById(R.id.seekBarDiff);
 
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.fitnessRadio)
-                {
+                if (checkedId == R.id.fitnessRadio) {
                     taskSkill = "fit";
-                }
-                else if (checkedId == R.id.socialRadio)
-                {
+                } else if (checkedId == R.id.socialRadio) {
                     taskSkill = "social";
                     System.out.println("Social WORKS");
-                }
-                else if (checkedId == R.id.careerRadio)
-                {
+                } else if (checkedId == R.id.careerRadio) {
                     taskSkill = "career";
-                }
-                else if (checkedId== R.id.hobbiesRadio)
-                {
+                } else if (checkedId == R.id.hobbiesRadio) {
                     taskSkill = "hobbies";
-                }
-                else
-                {
+                } else {
                     taskSkill = "n/a";
                 }
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        diffExp = (TextView) findViewById(R.id.diffSeekText);
+        diffExp.setText(R.string.trivial);
+        expText = (TextView) findViewById(R.id.expTextView);
+        skillText = (TextView) findViewById(R.id.skillsText);
+        diffucltySeekBar.setMax(50);
+        diffucltySeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            int progress = 0;
+
+
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+            public void onProgressChanged(SeekBar seekBar, int progresValue, boolean fromUser) {
+
+                progress = progresValue;
+                diffExp.setText(diffSetting(progress));
+                expText.setText(progress + "");
+                skillText.setText(progress/4 + "");
+
+
             }
+
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+                diffExp.setText(diffSetting(progress));
+                expText.setText(progress + "");
+                skillText.setText(progress/4 + "");
+
+
+            }
+
+
+            @Override
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                diffExp.setText(diffSetting(progress));
+                expText.setText(progress + "");
+                skillText.setText(progress/4 + "");
+                exp = progress;
+                skillExp = progress/4;
+
+            }
+
         });
+
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         this.noteSwitch = (Switch) this.findViewById(R.id.noteSwitch);
     }
+
+
+
+
 
     public void onCreateTaskButtonPushed(View v)
     {
@@ -104,16 +155,12 @@ public class CreateTaskActivity extends AppCompatActivity {
             tasks.setDesript(taskDesTV.getText().toString());
             tasks.setCompleted(false);
             tasks.setSkill(taskSkill);
+            tasks.setExp(exp);
+            tasks.setSkillPoints(skillExp);
              if (this.noteSwitch.isChecked())
              {
                  tasks.setNote("yes");
-                 /*
-                 final ViewGroup rootFrameLayout = (ViewGroup) this.getWindow().peekDecorView();
-                 LayoutInflater li = LayoutInflater.from(this);
-                 View noteview = li.inflate(R.layout.switchonform, null);
-                 LinearLayout placeHolder = (LinearLayout)this.findViewById(R.id.placeHolderLayout);
-                 placeHolder.addView(noteview);
-                 */
+
              }
             else
              {
@@ -126,7 +173,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
             TimefulCore.inprogressTask = tasks;
             Log.i("TASK", tasks.getName());
-            Intent aIntent = new Intent(this, TimefulCalActivity.class);
+            Intent aIntent = new Intent(this, StartDateCalActivity.class);
             aIntent.putExtra("Task", tasks);
             this.startActivityForResult(aIntent, 1);
 
@@ -138,6 +185,32 @@ public class CreateTaskActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+
+    public String diffSetting(int exp)
+    {
+        if (exp <= 5)
+        {
+            return "Trivial";
+        }
+        else if (exp <= 20)
+        {
+            return "Easy";
+        }
+        else if (exp<= 35)
+        {
+            return "Normal";
+        }
+        else if (exp<= 45)
+        {
+            return "Hard";
+        }
+        else
+        {
+            return "Very Hard";
+        }
 
     }
 

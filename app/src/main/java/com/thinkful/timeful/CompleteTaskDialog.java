@@ -21,6 +21,7 @@ import java.util.Date;
 public class CompleteTaskDialog extends DialogFragment {
 
     Date date;
+    private String skillType;
 
 
     @Override
@@ -37,7 +38,29 @@ public class CompleteTaskDialog extends DialogFragment {
                         realTask.setCompleted(true);
                         realTask.saveInBackground();
                         TimefulCore.userTasks.remove(realTask);
-                        TimefulCore.currentUser.put("Exp", 15 + TimefulCore.currentUser.getInt("Exp"));
+                        TimefulCore.currentUser.put("Exp", realTask.getExp() + TimefulCore.currentUser.getInt("Exp"));
+                       skillType =  realTask.getSkill();
+
+                        if (skillType.equals("fit"))
+                        {
+                            TimefulCore.currentUser.put("Fit", realTask.getSkillPoints() + TimefulCore.currentUser.getInt("Fit"));
+                        }
+
+                        else if (skillType.equals("social"))
+                        {
+                            TimefulCore.currentUser.put("Social", realTask.getSkillPoints() + TimefulCore.currentUser.getInt("Social"));
+                        }
+
+                        else if (skillType.equals("career"))
+                        {
+                            TimefulCore.currentUser.put("Career", realTask.getSkillPoints() + TimefulCore.currentUser.getInt("Career"));
+                        }
+
+                        else if (skillType.equals("hobbies"))
+                        {
+                            TimefulCore.currentUser.put("hobbies", realTask.getSkillPoints() + TimefulCore.currentUser.getInt("hobbies"));
+                        }
+
                         TimefulCore.currentUser.saveInBackground();
                         TimefulCore.isSaved = true;
                         TimefulCore.inprogressTask = realTask;
@@ -55,6 +78,8 @@ public class CompleteTaskDialog extends DialogFragment {
                             tasks.setCompleted(false);
                             tasks.setSkill(realTask.getSkill());
                             tasks.setEnd(realTask.getRepeat());
+                            tasks.setSkillPoints(realTask.getSkillPoints());
+                            tasks.setExp(realTask.getExp());
                             String type = realTask.getReType();
 
                             if (type.equals("day"))

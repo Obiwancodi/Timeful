@@ -94,6 +94,36 @@ public class Tasks extends ParseObject  implements Serializable
         return getString("repeatType");
     }
 
+    public void setStart (Date date)
+    {
+        put("start", date);
+    }
+
+    public Date getStart()
+    {
+        return getDate("start");
+    }
+
+    public int getSkillPoints()
+    {
+        return getInt("skillPoints");
+    }
+
+    public void setSkillPoints(int skill)
+    {
+        put("skillPoints", skill);
+    }
+
+
+    public int getExp()
+    {
+        return getInt("exp");
+    }
+
+    public void setExp(int exp)
+    {
+        put("exp", exp);
+    }
 
 
 

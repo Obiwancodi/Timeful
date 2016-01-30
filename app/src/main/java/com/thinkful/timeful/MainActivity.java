@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private TaskListAdapter mAdapter;
     private ProgressBar mProgressBar;
 
+    /*
+    Query all tasks if all task expired than penaltiy by setting it to True and take exp hit
+     */
+
     private static class UpdateLay extends LinearLayoutManager {
 
         @Override

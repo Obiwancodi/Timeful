@@ -69,30 +69,19 @@
         android:id="@+id/noteSwitch"
         android:textOff="Off"
         android:textOn="On"
-        android:layout_below="@+id/textView4"
-        android:layout_toRightOf="@+id/button2"
-        android:layout_toEndOf="@+id/button2"
-        android:layout_marginTop="25dp" />
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Notifications"
-        android:id="@+id/textView4"
-        android:layout_alignTop="@+id/radioGroup"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insert Exp Points"
-        android:id="@+id/textView6"
+        android:text="Difficulty"
+        android:id="@+id/diffSeekText"
         android:textSize="20dp"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/TaskDescription"
-        android:layout_alignEnd="@+id/TaskDescription" />
+        android:layout_above="@+id/seekBarDiff"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -156,11 +145,44 @@
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
+        android:id="@+id/seekBarDiff"
         android:layout_above="@+id/button2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/textView6"
-        android:layout_toStartOf="@+id/textView6" />
+        android:layout_toLeftOf="@+id/noteSwitch"
+        android:layout_toStartOf="@+id/noteSwitch" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Notifications"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Exp"
+        android:id="@+id/expTextView"
+        android:layout_alignBottom="@+id/seekBarDiff"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Skill Exp"
+        android:id="@+id/skillsText"
+        android:layout_alignBottom="@+id/radioGroup"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
 
 </RelativeLayout>
