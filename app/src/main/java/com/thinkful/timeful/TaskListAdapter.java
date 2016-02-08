@@ -23,7 +23,10 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,6 +64,9 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         ParseQuery<ParseObject> taskQuery = ParseQuery.getQuery("Tasks");
         taskQuery.whereEqualTo("createdBy", ParseUser.getCurrentUser());
         taskQuery.whereEqualTo("Completed", false);
+        taskQuery.whereEqualTo("expired", false);
+        taskQuery.whereEqualTo("canceled", false);
+
         try
         {
             TimefulCore.userTasks = taskQuery.find();
@@ -75,7 +81,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     @Override
     public TaskListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.tasks_list, viewGroup, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.task_list, viewGroup, false);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +124,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         queryTasks();
         ParseObject task = TimefulCore.userTasks.get(i);
         Tasks realTask = (Tasks) task;
-        viewHolder.setText(realTask.getName());
+        viewHolder.setText(realTask.getName(),realTask.getEnd());
     }
 
     @Override
@@ -137,15 +143,23 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView text;
+        private TextView nameText;
+        private TextView dueText;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            text = (TextView) itemView.findViewById(R.id.text);
+            nameText = (TextView) itemView.findViewById(R.id.nameText);
+            dueText = (TextView) itemView.findViewById(R.id.dueDateText);
         }
 
-        public void setText(String text) {
-            this.text.setText(text);
+        public void setText(String taskName,Date dueDate) {
+            this.nameText.setText(taskName);
+            DateFormat[] formats = new DateFormat[] {
+                    DateFormat.getDateInstance(),
+                    DateFormat.getDateTimeInstance(),
+                    DateFormat.getTimeInstance(),
+            };
+            this.dueText.setText(formats[1].format(dueDate));
         }
     }
 
@@ -157,6 +171,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
 
     }
+
+
+
+
 
 
 

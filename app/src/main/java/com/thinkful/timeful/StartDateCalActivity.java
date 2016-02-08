@@ -30,6 +30,10 @@ public class StartDateCalActivity extends AppCompatActivity {
     {
         CalendarView cv = (CalendarView) this.findViewById(R.id.calendarViewStart);
         cv.setFirstDayOfWeek(1);
+        Calendar start = Calendar.getInstance();
+        y = start.get(Calendar.YEAR);
+        mon = start.get(Calendar.MONTH);
+         d = start.get(Calendar.DAY_OF_MONTH);
 
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

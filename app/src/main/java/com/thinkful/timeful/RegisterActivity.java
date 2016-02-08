@@ -48,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
         Users user = new Users();
         user.setUsername( usernameTV.getText().toString());
         user.setEmail(emailTV.getText().toString());
+        user.addExp(0);
+        user.setLevel(0);
 
        String password = passwordTV.getText().toString();
         String cPassword =  confirmPasswordTV.getText().toString();

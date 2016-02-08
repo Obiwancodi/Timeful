@@ -25,4 +25,5 @@
     <string name="monthly">Monthly</string>
     <string name="weekly">Weekly</string>
     <string name="trivial">Trivial</string>
+    <string name="taskExpiredString">Task has Expired</string>
 </resources>

@@ -13,24 +13,16 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="206dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/expBar"
-            android:max="400"
-            android:layout_gravity="center_horizontal" />
+        android:id="@+id/linearLayout"
+        android:layout_below="@+id/expBar">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="464dp"
+            android:layout_marginTop="20dp" />
 
 
     </LinearLayout>
@@ -48,5 +40,37 @@
         android:layout_marginStart="43dp"
         android:layout_marginBottom="61dp"
         android:layout_gravity="center_horizontal" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/expBar"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="22"
+        android:id="@+id/currentText"
+        android:layout_alignBaseline="@+id/nextText"
+        android:layout_alignBottom="@+id/nextText"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_alignStart="@+id/button4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="123"
+        android:id="@+id/nextText"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/expBar"
+        android:layout_toEndOf="@+id/expBar"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
 
 </RelativeLayout>

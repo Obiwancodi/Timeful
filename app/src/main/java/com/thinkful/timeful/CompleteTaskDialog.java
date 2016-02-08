@@ -22,6 +22,9 @@ public class CompleteTaskDialog extends DialogFragment {
 
     Date date;
     private String skillType;
+    private int nextNumber;
+    private int newExp;
+    private int userExp;
 
 
     @Override
@@ -38,6 +41,7 @@ public class CompleteTaskDialog extends DialogFragment {
                         realTask.setCompleted(true);
                         realTask.saveInBackground();
                         TimefulCore.userTasks.remove(realTask);
+                        TimefulCore.staticAdapter.notifyDataSetChanged();
                         TimefulCore.currentUser.put("Exp", realTask.getExp() + TimefulCore.currentUser.getInt("Exp"));
                        skillType =  realTask.getSkill();
 
@@ -63,9 +67,9 @@ public class CompleteTaskDialog extends DialogFragment {
 
                         TimefulCore.currentUser.saveInBackground();
                         TimefulCore.isSaved = true;
-                        TimefulCore.inprogressTask = realTask;
+                       // TimefulCore.inprogressTask = realTask;
                         System.out.println(realTask.getCompleted());
-                        TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
+                       // TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
 
                         if (realTask.getRepeat() != null)
                         {
@@ -81,6 +85,8 @@ public class CompleteTaskDialog extends DialogFragment {
                             tasks.setSkillPoints(realTask.getSkillPoints());
                             tasks.setExp(realTask.getExp());
                             String type = realTask.getReType();
+                            tasks.setCanceled(false);
+                            tasks.setExpired(false);
 
                             if (type.equals("day"))
                             {
@@ -119,9 +125,23 @@ public class CompleteTaskDialog extends DialogFragment {
                             tasks.saveInBackground();
                             TimefulCore.staticAdapter.addTask(tasks);
                             TimefulCore.staticAdapter.notifyDataSetChanged();
+                            TimefulCore.levelUp();
                         }
 
-
+                        else
+                        {
+                            TimefulCore.staticAdapter.notifyDataSetChanged();
+                            TimefulCore.levelUp();
+                        }
+                        userExp = (int) TimefulCore.currentUser.get("Exp");
+                        nextNumber = (int) TimefulCore.currentUser.get("level");
+                        newExp =  userExp - TimefulCore.levelList[nextNumber - 1];
+                        System.out.println(newExp);
+                        TimefulCore.staticProgress.setProgress(newExp);
+                        TimefulCore.levelUp();
+                        nextNumber = nextNumber + 1;
+                        TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
+                        TimefulCore.nextLevel.setText(nextNumber + "");
 
                     }
                 })

@@ -11,6 +11,7 @@ public class Users extends ParseUser{
 
     public Users() {
         put("Exp", 0);
+        put("level", 0);
     }
 
     public int getExp() {
@@ -24,6 +25,15 @@ public class Users extends ParseUser{
 
     }
 
+    public int getLevel()
+    {
+        return getInt("level");
+    }
+
+    public void setLevel (int level)
+    {
+        put("level", level);
+    }
 
 
 

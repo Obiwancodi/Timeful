@@ -125,6 +125,24 @@ public class Tasks extends ParseObject  implements Serializable
         put("exp", exp);
     }
 
+    public boolean getExpired()
+    {
+        return getBoolean("expired");
+    }
 
+    public void setExpired(boolean expired)
+    {
+        put("expired", expired);
+    }
+
+    public boolean getCanceled()
+    {
+        return getBoolean("canceled");
+    }
+
+    public void setCanceled(boolean canceled)
+    {
+        put("canceled", canceled);
+    }
 
 }

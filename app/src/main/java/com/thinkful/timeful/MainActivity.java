@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.DialogInterface;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 import com.parse.Parse;
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private TaskListAdapter mAdapter;
-    private ProgressBar mProgressBar;
+
+    private int nextNumber;
+    private int newExp;
 
     /*
     Query all tasks if all task expired than penaltiy by setting it to True and take exp hit
@@ -70,7 +72,11 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getFrag();
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+
 
         mLayoutManager = new UpdateLay(this);
        mRecyclerView.setLayoutManager(mLayoutManager);
@@ -79,12 +85,37 @@ public class MainActivity extends AppCompatActivity {
 
         TimefulCore.staticAdapter = new TaskListAdapter(this, mRecyclerView);
         mRecyclerView.setAdapter(TimefulCore.staticAdapter);
-        getFrag();
+        TimefulCore.currentLevel = (TextView) findViewById(R.id.currentText);
+        TimefulCore.nextLevel = (TextView) findViewById(R.id.nextText);
+        nextNumber = (int) TimefulCore.currentUser.get("level");
+        nextNumber = nextNumber + 1;
+        TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
+        TimefulCore.nextLevel.setText(nextNumber + "");
+
 
       int userExp = (int) TimefulCore.currentUser.get("Exp");
+        int userLevel = (int) TimefulCore.currentUser.get("level");
 
        TimefulCore.staticProgress = (ProgressBar) findViewById(R.id.expBar);
-        TimefulCore.staticProgress.setProgress(userExp);
+
+        if (userLevel == 0)
+        {
+            TimefulCore.staticProgress.setProgress(userExp);
+        }
+        else
+        {
+            System.out.println(userExp);
+            //System.out.println(userExp - TimefulCore.levelList[userLevel]);
+            newExp =  userExp - TimefulCore.levelList[userLevel - 1];
+            System.out.println(newExp);
+            TimefulCore.staticProgress.setProgress(newExp);
+            System.out.println(TimefulCore.staticProgress.getProgress());
+            TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
+        }
+        TimefulCore.levelUp();
+        TimefulCore.isExpired();
+
+
 
 
 
@@ -120,22 +151,30 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onResume();
         this.mRecyclerView.requestLayout();
+        TimefulCore.isExpired();
         int userExp = (int) TimefulCore.currentUser.get("Exp");
-        TimefulCore.staticProgress.setProgress(userExp);
+        int userLevel = (int) TimefulCore.currentUser.get("level");
+        TimefulCore.staticProgress.setProgress(newExp);
+        TimefulCore.levelUp();
+        TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
+        TimefulCore.nextLevel.setText(nextNumber + "");
+
         if (TimefulCore.inprogressTask != null && TimefulCore.isSaved)
         {
             TimefulCore.staticAdapter.addTask(TimefulCore.inprogressTask);
             this.mRecyclerView.requestLayout();
             TimefulCore.staticAdapter.notifyDataSetChanged();
-            TimefulCore.staticProgress.setProgress(userExp);
-
+            TimefulCore.staticProgress.setProgress(newExp);
+            TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
+            TimefulCore.inprogressTask = null;
+            TimefulCore.isSaved = false;
+            System.out.println("ON RESUME!!!!!");
 
 
 
 
         }
-        TimefulCore.inprogressTask = null;
-        TimefulCore.isSaved = false;
+
         System.out.println("ON RESUME!!!!!");
 
     }
@@ -175,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     public void getFrag()
     {
         TimefulCore.frag = getFragmentManager();
@@ -182,10 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void levelUp()
-    {
 
-    }
 
 
 

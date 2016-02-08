@@ -157,6 +157,8 @@ public class CreateTaskActivity extends AppCompatActivity {
             tasks.setSkill(taskSkill);
             tasks.setExp(exp);
             tasks.setSkillPoints(skillExp);
+            tasks.setExpired(false);
+            tasks.setCanceled(false);
              if (this.noteSwitch.isChecked())
              {
                  tasks.setNote("yes");
