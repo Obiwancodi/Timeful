@@ -145,4 +145,11 @@ public class Tasks extends ParseObject  implements Serializable
         put("canceled", canceled);
     }
 
+    public boolean getEdited() {
+        return getBoolean("edited");
+    }
+
+    public void setEdited(boolean edited) {
+        put("edited", edited);
+    }
 }

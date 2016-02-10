@@ -17,8 +17,8 @@
     </string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_create_task">CreateTaskActivity</string>
-    <string name="complete_task_dialog">Are you sure you want to complete the task?</string>
-    <string name="complete_task_yes">Yes</string>
+    <string name="complete_task_dialog">Task Action</string>
+    <string name="complete_task_yes">Complete</string>
     <string name="complete_task_no">No</string>
     <string name="repeat_task_dialog">Do you want the task to repeat</string>
     <string name="daily">Daily</string>
@@ -26,4 +26,6 @@
     <string name="weekly">Weekly</string>
     <string name="trivial">Trivial</string>
     <string name="taskExpiredString">Task has Expired</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 </resources>

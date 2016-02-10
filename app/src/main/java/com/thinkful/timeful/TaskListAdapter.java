@@ -66,6 +66,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         taskQuery.whereEqualTo("Completed", false);
         taskQuery.whereEqualTo("expired", false);
         taskQuery.whereEqualTo("canceled", false);
+        taskQuery.whereEqualTo("edited", false);
 
         try
         {

@@ -145,11 +145,32 @@ public class CompleteTaskDialog extends DialogFragment {
 
                     }
                 })
-                .setNegativeButton(R.string.complete_task_no, new DialogInterface.OnClickListener() {
+
+                .setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
+
                     }
                 });
+
+
+               builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                ParseObject task = TimefulCore.userTasks.get(TimefulCore.thing);
+                Tasks realTask = (Tasks) task;
+                realTask.setCanceled(true);
+                int uExp = (int) TimefulCore.currentUser.get("Exp");
+                int tExp = (realTask.getExp())/4;
+                uExp = uExp - tExp;
+                TimefulCore.currentUser.put("Exp", uExp);
+                TimefulCore.currentUser.saveInBackground();
+                realTask.saveInBackground();
+                TimefulCore.userTasks.remove(realTask);
+                TimefulCore.staticAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+
         // Create the AlertDialog object and return it
         return  builder.create();
 

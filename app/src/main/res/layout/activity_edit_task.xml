@@ -25,11 +25,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Name"
         android:id="@+id/editNameText"
+        android:textSize="20dp"
         android:layout_below="@+id/editTaskText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp"
-        android:textSize="20dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -68,49 +67,97 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Notifications"
         android:id="@+id/textView8"
+        android:textSize="20dp"
         android:layout_below="@+id/editTextDescript"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
-        android:textSize="20dp" />
+        android:layout_alignRight="@+id/editTextDescript"
+        android:layout_alignEnd="@+id/editTextDescript" />
 
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/switch1"
-        android:layout_alignTop="@+id/textView8"
-        android:layout_toRightOf="@+id/editTaskText"
-        android:layout_toEndOf="@+id/editTaskText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Experience"
-        android:id="@+id/editExpText"
-        android:layout_below="@+id/switch1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Insert exp here"
-        android:id="@+id/textView9"
-        android:layout_alignTop="@+id/editExpText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:singleLine="true" />
+        android:layout_below="@+id/textView8"
+        android:layout_alignRight="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:id="@+id/editSubmitButton"
+        android:onClick="editButtonPushed"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView8"
+        android:id="@+id/editRadioGroup"
+        android:layout_toStartOf="@+id/editSubmitButton">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Career"
+            android:id="@+id/careerEdit" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fitness"
+            android:id="@+id/fitEdit" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Social"
+            android:id="@+id/socialEdit" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hobbies"
+            android:id="@+id/hobEdit" />
+    </RadioGroup>
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editSeekBar"
+        android:layout_marginBottom="42dp"
+        android:layout_alignBottom="@+id/editRadioGroup"
+        android:layout_alignRight="@+id/switch1"
+        android:layout_alignEnd="@+id/switch1"
+        android:layout_toRightOf="@+id/editSubmitButton"
+        android:layout_toEndOf="@+id/editSubmitButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="exp"
+        android:id="@+id/editExpText"
         android:layout_toRightOf="@+id/descriptEditText"
         android:layout_toEndOf="@+id/descriptEditText"
-        android:onClick="editButtonPushed" />
+        android:layout_above="@+id/editSubmitButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="skill exp"
+        android:id="@+id/skillExpEdit"
+        android:layout_above="@+id/editExpText"
+        android:layout_toLeftOf="@+id/switch1"
+        android:layout_toStartOf="@+id/switch1"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="diff"
+        android:id="@+id/diffExpEdit"
+        android:layout_alignTop="@+id/editExpText"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
