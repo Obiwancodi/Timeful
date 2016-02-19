@@ -122,8 +122,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(TaskListAdapter.ViewHolder viewHolder, int i) {
-        queryTasks();
+       //queryTasks();
+        System.out.println(TimefulCore.userTasks.size());
+        System.out.println(i);
         ParseObject task = TimefulCore.userTasks.get(i);
+        System.out.println(TimefulCore.userTasks.size());
         Tasks realTask = (Tasks) task;
         viewHolder.setText(realTask.getName(),realTask.getEnd());
     }

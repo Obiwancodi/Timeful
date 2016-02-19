@@ -176,7 +176,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
             TimefulCore.inprogressTask = tasks;
             Log.i("TASK", tasks.getName());
-            Intent aIntent = new Intent(this, StartDateCalActivity.class);
+            Intent aIntent = new Intent(this, TimefulCalActivity.class);
             aIntent.putExtra("Task", tasks);
             this.startActivityForResult(aIntent, 1);
 

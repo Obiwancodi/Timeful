@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(TimefulCore.staticAdapter);
         TimefulCore.currentLevel = (TextView) findViewById(R.id.currentText);
         TimefulCore.nextLevel = (TextView) findViewById(R.id.nextText);
-        nextNumber = (int) TimefulCore.currentUser.get("level");
-        nextNumber = nextNumber + 1;
+
+        nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
         TimefulCore.nextLevel.setText(nextNumber + "");
 
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             System.out.println(userExp);
-            //System.out.println(userExp - TimefulCore.levelList[userLevel]);
             newExp =  userExp - TimefulCore.levelList[userLevel - 1];
             System.out.println(newExp);
             TimefulCore.staticProgress.setProgress(newExp);
@@ -154,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
         TimefulCore.isExpired();
         int userExp = (int) TimefulCore.currentUser.get("Exp");
         int userLevel = (int) TimefulCore.currentUser.get("level");
+        newExp =  userExp - TimefulCore.levelList[userLevel - 1];
+        nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
         TimefulCore.staticProgress.setProgress(newExp);
         TimefulCore.levelUp();
         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");

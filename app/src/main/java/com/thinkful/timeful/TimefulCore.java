@@ -3,6 +3,8 @@ package com.thinkful.timeful;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.support.annotation.UiThread;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -68,7 +70,15 @@ public class TimefulCore
             TimefulCore.currentUser.saveInBackground();
         }
 
-        TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
+        else if (TimefulCore.levelList[userLevel -1] > userExp)
+        {
+            TimefulCore.currentUser.put("level", userLevel - 1);
+            TimefulCore.currentUser.saveInBackground();
+            TimefulCore.staticProgress.setProgress(userExp - TimefulCore.levelList[userLevel]);
+            TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel - 1]);
+        }
+
+        //TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
 
     }
 
@@ -117,6 +127,18 @@ public class TimefulCore
         dialog.show(TimefulCore.frag, "DIALOG");
 
 
+    }
+
+
+    @UiThread
+    static void updateData(TaskListAdapter taskListAdapter)
+    {
+        taskListAdapter.notifyDataSetChanged();
+    }
+
+    static void removeData(Tasks tasks)
+    {
+        TimefulCore.userTasks.remove(tasks);
     }
 
 

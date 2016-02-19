@@ -43,21 +43,25 @@ public class EditTaskActivity extends AppCompatActivity {
         if (TimefulCore.inprogressTask.getSkill().equals("fit"))
         {
             editRadioGroup.check(R.id.fitEdit);
+            taskSkill = "fit";
         }
 
         else if (TimefulCore.inprogressTask.getSkill().equals("social"))
         {
             editRadioGroup.check(R.id.socialEdit);
+            taskSkill = "social";
         }
 
         else if (TimefulCore.inprogressTask.getSkill().equals("career"))
         {
             editRadioGroup.check(R.id.careerEdit);
+            taskSkill = "career";
         }
 
         else
         {
             editRadioGroup.check(R.id.hobEdit);
+            taskSkill = "hobbies";
         }
 
         editRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

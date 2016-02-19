@@ -9,18 +9,27 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.thinkful.timeful.TimefulCalActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How often would you like the task to repeat?"
+        android:id="@+id/repeatText"
+        android:layout_above="@+id/radioGroupComplete"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="End Date"
+            android:text="Completed By"
             android:id="@+id/endDateText"
-            android:layout_gravity="center_horizontal"
             android:textSize="30dp" />
 
         <CalendarView
@@ -35,21 +44,53 @@
             android:showWeekNumber="false"
             android:layout_alignParentBottom="true" />
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/radioGroupComplete">
+
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/finishButton"
-            android:layout_gravity="right"
-            android:onClick="finishButtonClicked"
-            android:nestedScrollingEnabled="false" />
+            android:text="Never"
+            android:id="@+id/repeatNever" />
 
-        <TimePicker
-            android:layout_width="fill_parent"
+        <RadioButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/timePicker"
-            android:timePickerMode="spinner" />
-    </LinearLayout>
+            android:text="Daily"
+            android:id="@+id/repeatDay" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Weekly"
+            android:id="@+id/repeatWeek" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monthly"
+            android:id="@+id/repeatMonth"
+            android:layout_gravity="right" />
+    </RadioGroup>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/finishButton"
+        android:layout_gravity="center_horizontal"
+        android:onClick="finishButtonClicked"
+        android:nestedScrollingEnabled="false"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/repeatText"
+        android:layout_toEndOf="@+id/repeatText" />
 
 </RelativeLayout>

@@ -11,8 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -40,8 +42,18 @@ public class CompleteTaskDialog extends DialogFragment {
                         System.out.println(realTask.getName());
                         realTask.setCompleted(true);
                         realTask.saveInBackground();
-                        TimefulCore.userTasks.remove(realTask);
-                        TimefulCore.staticAdapter.notifyDataSetChanged();
+                        realTask.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    TimefulCore.updateData(TimefulCore.staticAdapter);
+                                }
+                            }
+                        });
+                        System.out.println(TimefulCore.userTasks.size());
+                        TimefulCore.removeData(realTask);
+                        System.out.println(TimefulCore.userTasks.size());
+                        TimefulCore.updateData(TimefulCore.staticAdapter);
                         TimefulCore.currentUser.put("Exp", realTask.getExp() + TimefulCore.currentUser.getInt("Exp"));
                        skillType =  realTask.getSkill();
 
@@ -87,6 +99,7 @@ public class CompleteTaskDialog extends DialogFragment {
                             String type = realTask.getReType();
                             tasks.setCanceled(false);
                             tasks.setExpired(false);
+                            tasks.setEdited(false);
 
                             if (type.equals("day"))
                             {
@@ -123,14 +136,18 @@ public class CompleteTaskDialog extends DialogFragment {
                             }
 
                             tasks.saveInBackground();
+
+                            TimefulCore.updateData(TimefulCore.staticAdapter);
+
                             TimefulCore.staticAdapter.addTask(tasks);
-                            TimefulCore.staticAdapter.notifyDataSetChanged();
+                           // TimefulCore.userTasks.add(tasks);
+
                             TimefulCore.levelUp();
                         }
 
                         else
                         {
-                            TimefulCore.staticAdapter.notifyDataSetChanged();
+                            TimefulCore.updateData(TimefulCore.staticAdapter);
                             TimefulCore.levelUp();
                         }
                         userExp = (int) TimefulCore.currentUser.get("Exp");
@@ -165,7 +182,15 @@ public class CompleteTaskDialog extends DialogFragment {
                 TimefulCore.currentUser.saveInBackground();
                 realTask.saveInBackground();
                 TimefulCore.userTasks.remove(realTask);
-                TimefulCore.staticAdapter.notifyDataSetChanged();
+                TimefulCore.levelUp();
+                userExp = (int) TimefulCore.currentUser.get("Exp");
+                newExp =  userExp - TimefulCore.levelList[(int) TimefulCore.currentUser.get("level") - 1];
+                System.out.println(newExp);
+                TimefulCore.staticProgress.setProgress(newExp);
+                nextNumber =  (int) TimefulCore.currentUser.get("level") + 1;
+                TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
+                TimefulCore.nextLevel.setText(nextNumber + "");
+                TimefulCore.updateData(TimefulCore.staticAdapter);
 
             }
         });
