@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -62,6 +63,12 @@ public class CreateTaskActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         diffucltySeekBar = (SeekBar) findViewById(R.id.seekBarDiff);
+
+        TextView taskNameTV = (TextView) this.findViewById(R.id.TaskName);
+        if(taskNameTV.requestFocus())
+        {
+            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
 
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
