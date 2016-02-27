@@ -65,11 +65,11 @@ public class CreateTaskActivity extends AppCompatActivity {
         diffucltySeekBar = (SeekBar) findViewById(R.id.seekBarDiff);
 
         TextView taskNameTV = (TextView) this.findViewById(R.id.TaskName);
-        if(taskNameTV.requestFocus())
+       /* if(taskNameTV.requestFocus())
         {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
-
+        */
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -140,7 +140,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        this.noteSwitch = (Switch) this.findViewById(R.id.noteSwitch);
+
     }
 
 
@@ -167,15 +167,7 @@ public class CreateTaskActivity extends AppCompatActivity {
             tasks.setExpired(false);
             tasks.setCanceled(false);
             tasks.setEdited(false);
-             if (this.noteSwitch.isChecked())
-             {
-                 tasks.setNote("yes");
 
-             }
-            else
-             {
-                 tasks.setNote("no");
-             }
 
 
 

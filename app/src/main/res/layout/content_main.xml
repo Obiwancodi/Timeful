@@ -15,43 +15,18 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="123"
-            android:id="@+id/nextText"
-            android:layout_gravity="right"
-            android:layout_alignBaseline="@+id/textView6"
-            android:layout_alignBottom="@+id/textView6"
-            android:layout_alignRight="@+id/linearLayout"
-            android:layout_alignEnd="@+id/linearLayout"
-            android:layout_marginRight="30dp" />
+        android:id="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/expBar">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="464dp"
+            android:layout_height="fill_parent"
             android:layout_marginTop="20dp" />
 
 
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Task"
-        android:id="@+id/button4"
-        android:onClick="createTaskPush"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="43dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginBottom="61dp"
-        android:layout_gravity="center_horizontal" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
@@ -68,10 +43,24 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="22"
         android:id="@+id/currentText"
-        android:layout_alignBaseline="@+id/nextText"
-        android:layout_alignBottom="@+id/nextText"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_alignStart="@+id/button4" />
+        android:layout_marginRight="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_above="@+id/linearLayout"
+        android:layout_toLeftOf="@+id/expBar"
+        android:layout_toStartOf="@+id/expBar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="123"
+        android:id="@+id/nextText"
+        android:layout_gravity="right"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/expBar"
+        android:layout_toEndOf="@+id/expBar"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,7 +68,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Level"
         android:id="@+id/textView6"
-        android:layout_alignParentTop="true"
+        android:layout_gravity="right"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

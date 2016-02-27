@@ -122,16 +122,14 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("ON CREATE!!!!!");
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         Log.i("CurrentUserMain", "" + ParseUser.getCurrentUser().getObjectId());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                createTaskPush();
 
 
             }
@@ -202,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createTaskPush(View v)
+    public void createTaskPush()
     {
         Intent intent = new Intent(this, CreateTaskActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

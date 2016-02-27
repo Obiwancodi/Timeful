@@ -13,12 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="g@gat.com"
         android:ems="10"
         android:id="@+id/emailLogin"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:hint="e-mail"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignRight="@+id/textView11"
+        android:layout_alignEnd="@+id/textView11" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,21 +27,23 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passwordLogin"
+        android:hint="password"
         android:layout_below="@+id/emailLogin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="gat" />
+        android:layout_alignLeft="@+id/emailLogin"
+        android:layout_alignStart="@+id/emailLogin"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Start"
         android:id="@+id/button3"
-        android:layout_below="@+id/passwordLogin"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp"
-        android:onClick="loginButtonClicked" />
+        android:onClick="loginButtonClicked"
+        android:typeface="serif"
+        style="@style/Base.Widget.AppCompat.ImageButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/passwordLogin"
+        android:layout_toStartOf="@+id/passwordLogin" />
 
     <Button
         android:layout_width="wrap_content"
@@ -52,4 +55,42 @@
         android:layout_alignParentEnd="true"
         android:soundEffectsEnabled="true"
         android:onClick="registerButtonClicked" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time to level up in real life!"
+        android:id="@+id/textView9"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true"
+        android:typeface="serif"
+        android:textStyle="italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome to Timeful!"
+        android:id="@+id/textView11"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:typeface="serif"
+        android:textStyle="italic" />
+    <Button
+        android:id="@+id/angry_btn"
+
+        android:text="Start!"
+        android:textColor="#FFFFFC"
+        android:textSize="15sp"
+
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@drawable/buttonshape"
+        android:layout_marginBottom="74dp"
+        android:layout_above="@+id/button3"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3" />
 </RelativeLayout>

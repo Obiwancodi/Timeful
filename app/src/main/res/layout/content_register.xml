@@ -12,19 +12,35 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/emailRegister"
-        android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/registerPassword"
         android:layout_below="@+id/emailRegister"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="password" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/button"
+        android:onClick="registerButtonPressed"
+        android:layout_below="@+id/registerConfirmPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:typeface="serif" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/emailRegister"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/registerPassword"
+        android:layout_alignStart="@+id/registerPassword"
+        android:hint="e-mail" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -33,15 +49,32 @@
         android:ems="10"
         android:id="@+id/registerConfirmPassword"
         android:layout_below="@+id/registerPassword"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/registerPassword"
+        android:layout_alignStart="@+id/registerPassword"
+        android:hint="confirm password" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/button"
-        android:layout_centerVertical="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Register and begin"
+        android:id="@+id/textView12"
+        android:layout_marginTop="39dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="registerButtonPressed" />
+        android:textStyle="italic"
+        android:typeface="serif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="your quest to success!"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/textView12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:textStyle="italic"
+        android:typeface="serif" />
 
 </RelativeLayout>
