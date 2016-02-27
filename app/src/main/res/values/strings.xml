@@ -28,4 +28,11 @@
     <string name="taskExpiredString">Task has Expired</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
+    <string name="e_mail">e-mail</string>
+    <string name="password">password</string>
+    <string name="register">register</string>
+    <string name="register_button">register</string>
+    <string name="time_to_level_up_in_real_life">Time to level up in real life!</string>
+    <string name="welcome_to_timeful">Welcome to Timeful!</string>
+    <string name="start">Start!</string>
 </resources>
