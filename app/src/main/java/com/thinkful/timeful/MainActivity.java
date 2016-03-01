@@ -151,9 +151,20 @@ public class MainActivity extends AppCompatActivity {
         TimefulCore.isExpired();
         int userExp = (int) TimefulCore.currentUser.get("Exp");
         int userLevel = (int) TimefulCore.currentUser.get("level");
-        newExp =  userExp - TimefulCore.levelList[userLevel - 1];
-        nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
-        TimefulCore.staticProgress.setProgress(newExp);
+
+        if (userExp < 100)
+
+        {
+            TimefulCore.staticProgress.setProgress(userExp);
+        }
+
+        else
+        {
+
+            newExp = userExp - TimefulCore.levelList[userLevel - 1];
+            nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
+            TimefulCore.staticProgress.setProgress(newExp);
+        }
         TimefulCore.levelUp();
         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
         TimefulCore.nextLevel.setText(nextNumber + "");

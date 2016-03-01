@@ -152,8 +152,21 @@ public class CompleteTaskDialog extends DialogFragment {
                         }
                         userExp = (int) TimefulCore.currentUser.get("Exp");
                         nextNumber = (int) TimefulCore.currentUser.get("level");
-                        newExp =  userExp - TimefulCore.levelList[nextNumber - 1];
-                        System.out.println(newExp);
+                        if (userExp < 100)
+
+                        {
+                            TimefulCore.staticProgress.setProgress(userExp);
+                        }
+
+                        else
+                        {
+
+                            newExp =  userExp - TimefulCore.levelList[nextNumber - 1];
+                            nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
+                            TimefulCore.staticProgress.setProgress(newExp);
+                        }
+
+
                         TimefulCore.staticProgress.setProgress(newExp);
                         TimefulCore.levelUp();
                         nextNumber = nextNumber + 1;

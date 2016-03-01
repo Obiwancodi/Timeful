@@ -65,11 +65,11 @@ public class CreateTaskActivity extends AppCompatActivity {
         diffucltySeekBar = (SeekBar) findViewById(R.id.seekBarDiff);
 
         TextView taskNameTV = (TextView) this.findViewById(R.id.TaskName);
-       /* if(taskNameTV.requestFocus())
+       if(taskNameTV.requestFocus())
         {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
-        */
+
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

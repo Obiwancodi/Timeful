@@ -83,7 +83,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
-            />
+            android:typeface="serif" />
         <android.support.v4.widget.Space
             android:layout_width="60dp"
             android:layout_height="wrap_content" />
@@ -100,6 +100,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="5"
-            android:onClick="registerButtonClicked" />
+            android:onClick="registerButtonClicked"
+            android:typeface="serif" />
     </LinearLayout>
 </LinearLayout>

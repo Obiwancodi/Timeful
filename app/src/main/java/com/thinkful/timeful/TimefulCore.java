@@ -62,8 +62,13 @@ public class TimefulCore
         int userLevel = (int) TimefulCore.currentUser.get("level");
         int userExp = (int) TimefulCore.currentUser.get("Exp");
 
+        if ((userLevel == 0) && (userExp < 100))
+        {
+            TimefulCore.staticProgress.setProgress(userExp);
+        }
 
-        if (TimefulCore.levelList[userLevel] <= userExp)
+
+       else if (TimefulCore.levelList[userLevel] <= userExp)
         {
             TimefulCore.staticProgress.setProgress(userExp - TimefulCore.levelList[userLevel]);
             TimefulCore.currentUser.put("level", userLevel + 1);

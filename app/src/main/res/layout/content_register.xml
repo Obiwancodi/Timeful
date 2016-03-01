@@ -19,28 +19,17 @@
         android:layout_centerHorizontal="true"
         android:hint="password" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/button"
-        android:onClick="registerButtonPressed"
-        android:layout_below="@+id/registerConfirmPassword"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="73dp"
-        android:typeface="serif" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/emailRegister"
-        android:layout_marginTop="160dp"
-        android:layout_alignParentTop="true"
+        android:hint="e-mail"
+        android:layout_below="@+id/textView13"
         android:layout_alignLeft="@+id/registerPassword"
         android:layout_alignStart="@+id/registerPassword"
-        android:hint="e-mail" />
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -59,11 +48,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Register and begin"
         android:id="@+id/textView12"
-        android:layout_marginTop="39dp"
+        android:textStyle="italic"
+        android:typeface="serif"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textStyle="italic"
-        android:typeface="serif" />
+        android:layout_marginTop="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,10 +60,30 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="your quest to success!"
         android:id="@+id/textView13"
-        android:layout_below="@+id/textView12"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
         android:textStyle="italic"
-        android:typeface="serif" />
+        android:typeface="serif"
+        android:gravity="center"
+        android:layout_below="@+id/textView12"
+        android:layout_alignRight="@+id/emailRegister"
+        android:layout_alignEnd="@+id/emailRegister"
+        android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/registerButton"
+        android:text="Register"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+
+        android:layout_width="110dp"
+        android:layout_height="30dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:typeface="serif"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/registerConfirmPassword"
+        android:layout_centerHorizontal="true"
+        android:onClick="registerButtonPressed" />
 
 </RelativeLayout>
