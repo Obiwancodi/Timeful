@@ -90,7 +90,7 @@ public class CompleteTaskDialog extends DialogFragment {
                             tasks.setUser(ParseUser.getCurrentUser());
                             tasks.setName(realTask.getName());
                             tasks.setDesript(realTask.getDesript());
-                            tasks.setNote(realTask.getNote());
+                            // tasks.setNote(realTask.getNote());
                             tasks.setCompleted(false);
                             tasks.setSkill(realTask.getSkill());
                             tasks.setEnd(realTask.getRepeat());
@@ -169,9 +169,24 @@ public class CompleteTaskDialog extends DialogFragment {
 
                         TimefulCore.staticProgress.setProgress(newExp);
                         TimefulCore.levelUp();
-                        nextNumber = nextNumber + 1;
+                       // nextNumber = nextNumber + 1;
                         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
                         TimefulCore.nextLevel.setText(nextNumber + "");
+
+                        int exp = (int) TimefulCore.currentUser.get("Exp");
+                        TimefulCore.currentExp.setText(exp + "");
+
+                        int hobExp = (int) TimefulCore.currentUser.get("hobbies");
+                        TimefulCore.currentHob.setText(hobExp + "");
+
+                        int carExp = (int) TimefulCore.currentUser.get("Career");
+                        TimefulCore.currentCar.setText(carExp + "");
+
+                        int fitExp = (int) TimefulCore.currentUser.get("Fit");
+                        TimefulCore.currentFit.setText(fitExp + "");
+
+                        int socialExp = (int) TimefulCore.currentUser.get("Social");
+                        TimefulCore.currentSocial.setText(socialExp + "");
 
                     }
                 })

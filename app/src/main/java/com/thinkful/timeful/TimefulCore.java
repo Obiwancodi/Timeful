@@ -45,6 +45,16 @@ public class TimefulCore
 
     static TextView nextLevel;
 
+    static TextView currentExp;
+
+    static TextView currentHob;
+
+    static TextView currentFit;
+
+    static TextView currentCar;
+
+    static TextView currentSocial;
+
     static int[] levelList = {100, 216, 351, 508, 691, 904, 1152, 1441, 1778, 2171, 2629, 3163, 3786,
             4512, 5359, 6347, 7499, 8843, 10411, 12240, 14373, 16861, 19763, 23148, 27097, 31704, 37078,
             43347, 50660, 59191, 69143, 80753, 94298, 110100, 128535, 150042, 175133, 204405, 238555, 278396,

@@ -35,6 +35,14 @@ public class Users extends ParseUser{
         put("level", level);
     }
 
+    public void setSills ()
+    {
+        put("hobbies", 0);
+        put("Fit", 0);
+        put("Career", 0);
+        put("Social", 0);
+    }
+
 
 
 

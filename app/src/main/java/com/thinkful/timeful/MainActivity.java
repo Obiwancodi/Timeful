@@ -29,6 +29,8 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.sql.Time;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int nextNumber;
     private int newExp;
+
 
     /*
     Query all tasks if all task expired than penaltiy by setting it to True and take exp hit
@@ -114,7 +117,25 @@ public class MainActivity extends AppCompatActivity {
         TimefulCore.levelUp();
         TimefulCore.isExpired();
 
+        TimefulCore.currentExp = (TextView) findViewById(R.id.expMainText);
+        int exp = (int) TimefulCore.currentUser.get("Exp");
+        TimefulCore.currentExp.setText(exp + "");
 
+        TimefulCore.currentHob = (TextView) findViewById(R.id.hobTextView);
+        int hobExp = (int) TimefulCore.currentUser.get("hobbies");
+        TimefulCore.currentHob.setText(hobExp + "");
+
+        TimefulCore.currentCar = (TextView) findViewById(R.id.carrerText);
+        int carExp = (int) TimefulCore.currentUser.get("Career");
+        TimefulCore.currentCar.setText(carExp + "");
+
+        TimefulCore.currentFit = (TextView) findViewById(R.id.fitText);
+        int fitExp = (int) TimefulCore.currentUser.get("Fit");
+        TimefulCore.currentFit.setText(fitExp + "");
+
+        TimefulCore.currentSocial = (TextView) findViewById(R.id.socialText);
+        int socialExp = (int) TimefulCore.currentUser.get("Social");
+        TimefulCore.currentSocial.setText(socialExp + "");
 
 
 
@@ -152,19 +173,14 @@ public class MainActivity extends AppCompatActivity {
         int userExp = (int) TimefulCore.currentUser.get("Exp");
         int userLevel = (int) TimefulCore.currentUser.get("level");
 
-        if (userExp < 100)
 
-        {
-            TimefulCore.staticProgress.setProgress(userExp);
-        }
+            if (userLevel > 0) {
 
-        else
-        {
+                newExp = userExp - TimefulCore.levelList[userLevel - 1];
+                nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
+                TimefulCore.staticProgress.setProgress(newExp);
+            }
 
-            newExp = userExp - TimefulCore.levelList[userLevel - 1];
-            nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
-            TimefulCore.staticProgress.setProgress(newExp);
-        }
         TimefulCore.levelUp();
         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
         TimefulCore.nextLevel.setText(nextNumber + "");
@@ -174,8 +190,18 @@ public class MainActivity extends AppCompatActivity {
             TimefulCore.staticAdapter.addTask(TimefulCore.inprogressTask);
             this.mRecyclerView.requestLayout();
             TimefulCore.staticAdapter.notifyDataSetChanged();
-            TimefulCore.staticProgress.setProgress(newExp);
-            TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
+            if (userLevel == 0)
+
+            {
+                TimefulCore.staticProgress.setProgress(userExp);
+                System.out.println(userExp);
+            }
+
+            else {
+
+                TimefulCore.staticProgress.setProgress(newExp);
+                TimefulCore.staticProgress.setMax(TimefulCore.expList[userLevel]);
+            }
             TimefulCore.inprogressTask = null;
             TimefulCore.isSaved = false;
             System.out.println("ON RESUME!!!!!");

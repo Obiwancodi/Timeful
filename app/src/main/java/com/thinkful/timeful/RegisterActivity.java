@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.setEmail(emailTV.getText().toString());
         user.addExp(0);
         user.setLevel(0);
+        user.setSills();
 
        String password = passwordTV.getText().toString();
         String cPassword =  confirmPasswordTV.getText().toString();
