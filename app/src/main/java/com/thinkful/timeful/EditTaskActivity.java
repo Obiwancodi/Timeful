@@ -85,14 +85,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
         this.noteSwitch = (Switch) this.findViewById(R.id.switch1);
 
-        if (TimefulCore.inprogressTask.getNote().equals("yes"))
-        {
-            noteSwitch.setChecked(true);
-        }
-        else
-        {
-            noteSwitch.setChecked(false);
-        }
+
 
          expEditText = (TextView) findViewById(R.id.editExpText);
         expEditText.setText(TimefulCore.inprogressTask.getExp() + "");

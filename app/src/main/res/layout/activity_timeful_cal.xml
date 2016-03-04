@@ -16,7 +16,11 @@
         android:id="@+id/repeatText"
         android:layout_above="@+id/radioGroupComplete"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp"
+        android:typeface="serif"
+        android:textSize="15dp"
+        android:textColor="#020000" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -30,7 +34,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Completed By"
             android:id="@+id/endDateText"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:typeface="serif" />
 
         <CalendarView
             android:layout_width="match_parent"
@@ -42,55 +48,70 @@
             android:clickable="true"
             android:contextClickable="false"
             android:showWeekNumber="false"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:focusableInTouchMode="false"
+            style="@style/MaterialCalendarView" />
 
     </LinearLayout>
 
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/radioGroupComplete"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/radioGroupComplete">
+        android:layout_marginBottom="10dp">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Never"
-            android:id="@+id/repeatNever" />
+            android:id="@+id/repeatNever"
+            android:typeface="serif" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Daily"
-            android:id="@+id/repeatDay" />
+            android:id="@+id/repeatDay"
+            android:typeface="serif" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Weekly"
-            android:id="@+id/repeatWeek" />
+            android:id="@+id/repeatWeek"
+            android:typeface="serif" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monthly"
             android:id="@+id/repeatMonth"
-            android:layout_gravity="right" />
+            android:layout_gravity="right"
+            android:typeface="serif" />
     </RadioGroup>
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/finishButton"
-        android:layout_gravity="center_horizontal"
-        android:onClick="finishButtonClicked"
-        android:nestedScrollingEnabled="false"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/repeatText"
-        android:layout_toEndOf="@+id/repeatText" />
+        android:id="@+id/createTaskButton"
+        android:text="Create"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+
+        android:layout_width="110dp"
+        android:layout_height="30dp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:typeface="serif"
+        android:layout_alignTop="@+id/radioGroupComplete"
+        android:layout_alignRight="@+id/repeatText"
+        android:layout_alignEnd="@+id/repeatText"
+        android:layout_marginTop="39dp"
+        android:singleLine="true"
+        android:onClick="finishButtonClicked" />
 
 </RelativeLayout>

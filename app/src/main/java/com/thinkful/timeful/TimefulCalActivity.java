@@ -100,6 +100,7 @@ public class TimefulCalActivity extends AppCompatActivity
 
         Calendar cc = Calendar.getInstance();
         cc.setTime(date);
+        System.out.println(TimefulCore.inprogressTask.getReType());
 
         if (TimefulCore.inprogressTask.getReType().equals("day"))
         {
@@ -129,14 +130,7 @@ public class TimefulCalActivity extends AppCompatActivity
     }
 
 
-    public void showDialog()
-    {
-        frag  = getFragmentManager();
-        RepeatingTaskDialog dialog = new RepeatingTaskDialog();
-        dialog.show(frag, "DIALOG");
 
-
-    }
 
 
 }
