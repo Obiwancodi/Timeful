@@ -89,9 +89,9 @@ public class EditTaskActivity extends AppCompatActivity {
 
          expEditText = (TextView) findViewById(R.id.editExpText);
         expEditText.setText(TimefulCore.inprogressTask.getExp() + "");
-         skillEditText = (TextView) findViewById(R.id.skillExpEdit);
+         skillEditText = (TextView) findViewById(R.id.skillEditText);
         skillEditText.setText(TimefulCore.inprogressTask.getSkill() + "");
-         diffExp = (TextView) findViewById(R.id.diffExpEdit);
+         diffExp = (TextView) findViewById(R.id.diffEdtitText);
         diffExp.setText(diffSetting(TimefulCore.inprogressTask.getExp()));
         seekBar1 = (SeekBar) findViewById(R.id.editSeekBar);
         seekBar1.setMax(50);
@@ -148,8 +148,8 @@ public class EditTaskActivity extends AppCompatActivity {
 
     public void editButtonPushed (View v)
     {
-        EditText editName = (EditText) this.findViewById(R.id.editTextName);
-        EditText editDes = (EditText) this.findViewById(R.id.editTextDescript);
+        EditText editName = (EditText) this.findViewById(R.id.taskEditName);
+        EditText editDes = (EditText) this.findViewById(R.id.taskDescriptionEdit);
         TimefulCore.inprogressTask.setEdited(true);
         TimefulCore.inprogressTask.saveInBackground();
         TimefulCore.userTasks.remove(TimefulCore.inprogressTask);
