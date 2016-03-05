@@ -1,36 +1,45 @@
 package com.thinkful.timeful;
 
-import android.app.FragmentManager;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.RadioGroup;
-import android.widget.TimePicker;
+import android.widget.TextView;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 public class TimefulCalActivity extends AppCompatActivity
 {
-    private TimePicker timePicker;
     private int y = 0;
     private int mon;
     private int d;
     private int hour;
     private int min;
-    private List userTasks;
-    FragmentManager frag;
     private RadioGroup repeatGroup;
     private Date date;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeful_cal);
+
+
+
+
         repeatGroup =  (RadioGroup) findViewById(R.id.radioGroupComplete);
         repeatGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -56,7 +65,7 @@ public class TimefulCalActivity extends AppCompatActivity
                 }
             }
         });
-        this.initCal();
+       this.initCal();
         TimefulCore.mContext =this;
 
 
@@ -128,8 +137,6 @@ public class TimefulCalActivity extends AppCompatActivity
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
-
-
 
 
 

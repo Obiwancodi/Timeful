@@ -1,163 +1,217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.thinkful.timeful.EditTaskActivity">
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Edit Task"
-        android:id="@+id/editTaskText"
-        android:textSize="40dp"
+        android:id="@+id/textViewEdit"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Name"
-        android:id="@+id/editNameText"
-        android:textSize="20dp"
-        android:layout_below="@+id/editTaskText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="35dp"
+        android:gravity="center_horizontal"
+        android:typeface="serif" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextName"
-        android:layout_below="@+id/editNameText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/taskEditName"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Description"
-        android:id="@+id/descriptEditText"
-        android:textSize="20dp"
-        android:layout_below="@+id/editTextName"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/taskDescriptionEdit"
+        android:layout_alignEnd="@+id/taskDescriptionEdit"
+        android:hint="Task Name"
+        android:layout_below="@+id/textViewEdit"
+        android:gravity="center_horizontal"
+        android:editable="true"
+        android:typeface="serif" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextDescript"
-        android:layout_below="@+id/descriptEditText"
+        android:id="@+id/taskDescriptionEdit"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:gravity="center_horizontal"
+        android:hint="Task Description"
+        android:layout_below="@+id/taskEditName"
+        android:typeface="serif" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Notifications"
-        android:id="@+id/textView8"
-        android:textSize="20dp"
-        android:layout_below="@+id/editTextDescript"
-        android:layout_alignRight="@+id/editTextDescript"
-        android:layout_alignEnd="@+id/editTextDescript" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch1"
-        android:layout_below="@+id/textView8"
-        android:layout_alignRight="@+id/textView8"
-        android:layout_alignEnd="@+id/textView8" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/editSubmitButton"
-        android:onClick="editButtonPushed"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <RadioGroup
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textView8"
-        android:id="@+id/editRadioGroup"
-        android:layout_toStartOf="@+id/editSubmitButton">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Career"
-            android:id="@+id/careerEdit" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fitness"
-            android:id="@+id/fitEdit" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Social"
-            android:id="@+id/socialEdit" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hobbies"
-            android:id="@+id/hobEdit" />
-    </RadioGroup>
-
-    <SeekBar
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editSeekBar"
-        android:layout_marginBottom="42dp"
-        android:layout_alignBottom="@+id/editRadioGroup"
-        android:layout_alignRight="@+id/switch1"
-        android:layout_alignEnd="@+id/switch1"
-        android:layout_toRightOf="@+id/editSubmitButton"
-        android:layout_toEndOf="@+id/editSubmitButton" />
+        android:weightSum="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="exp"
-        android:id="@+id/editExpText"
-        android:layout_toRightOf="@+id/descriptEditText"
-        android:layout_toEndOf="@+id/descriptEditText"
-        android:layout_above="@+id/editSubmitButton" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="skill exp"
-        android:id="@+id/skillExpEdit"
-        android:layout_above="@+id/editExpText"
-        android:layout_toLeftOf="@+id/switch1"
-        android:layout_toStartOf="@+id/switch1"
-        android:layout_marginRight="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Task Skill"
+                android:id="@+id/textView7"
+                android:layout_below="@+id/taskDescriptionEdit"
+                android:typeface="serif" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="diff"
-        android:id="@+id/diffExpEdit"
-        android:layout_alignTop="@+id/editExpText"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroupEdit"
+                android:layout_below="@+id/textView7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fitness"
+                    android:id="@+id/fitnessRadioEdit"
+                    android:typeface="serif" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Career/School"
+                    android:id="@+id/careerRadioEdit"
+                    android:typeface="serif" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Social"
+                    android:id="@+id/socialRadioEdit"
+                    android:typeface="serif" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hobbies"
+                    android:id="@+id/hobbiesRadioEdit"
+                    android:layout_alignBottom="@+id/radioGroupEdit"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:typeface="serif" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Difficulty"
+                android:id="@+id/diffSeekText"
+                android:textSize="20dp"
+                android:layout_above="@+id/editSeekBar"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:typeface="serif" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editSeekBar"
+                android:layout_above="@+id/button2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/noteSwitch"
+                android:layout_toStartOf="@+id/noteSwitch"
+                android:progressTint="#10139a"
+                android:thumbTint="#10139a"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Task XP: "
+                    android:id="@+id/textView2"
+                    android:textSize="20dp"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="0"
+                    android:id="@+id/expTextView"
+                    android:layout_alignBottom="@+id/editSeekBar"
+                    android:layout_alignRight="@+id/textView4"
+                    android:layout_alignEnd="@+id/textView4"
+                    android:textSize="20dp"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skill XP: "
+                    android:id="@+id/textView3"
+                    android:textSize="20dp"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="0"
+                    android:id="@+id/skillsText"
+                    android:layout_alignBottom="@+id/radioGroupEdit"
+                    android:layout_alignLeft="@+id/textView4"
+                    android:layout_alignStart="@+id/textView4"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/editTasButton"
+                android:text="Submit"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#A8A8A8"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:typeface="serif"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:onClick="editButtonPushed" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

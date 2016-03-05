@@ -34,47 +34,47 @@ public class EditTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
-        EditText editName = (EditText) this.findViewById(R.id.editTextName);
+        EditText editName = (EditText) this.findViewById(R.id.taskEditName);
         editName.setText(TimefulCore.inprogressTask.getName());
-        EditText editDes = (EditText) this.findViewById(R.id.editTextDescript);
+        EditText editDes = (EditText) this.findViewById(R.id.taskDescriptionEdit);
         editDes.setText(TimefulCore.inprogressTask.getDesript());
-        editRadioGroup = (RadioGroup) findViewById(R.id.editRadioGroup);
+        editRadioGroup = (RadioGroup) findViewById(R.id.radioGroupEdit);
 
         if (TimefulCore.inprogressTask.getSkill().equals("fit"))
         {
-            editRadioGroup.check(R.id.fitEdit);
+            editRadioGroup.check(R.id.fitnessRadioEdit);
             taskSkill = "fit";
         }
 
         else if (TimefulCore.inprogressTask.getSkill().equals("social"))
         {
-            editRadioGroup.check(R.id.socialEdit);
+            editRadioGroup.check(R.id.socialRadioEdit);
             taskSkill = "social";
         }
 
         else if (TimefulCore.inprogressTask.getSkill().equals("career"))
         {
-            editRadioGroup.check(R.id.careerEdit);
+            editRadioGroup.check(R.id.careerRadioEdit);
             taskSkill = "career";
         }
 
         else
         {
-            editRadioGroup.check(R.id.hobEdit);
+            editRadioGroup.check(R.id.hobbiesRadioEdit);
             taskSkill = "hobbies";
         }
 
         editRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.fitEdit) {
+                if (checkedId == R.id.fitnessRadioEdit) {
                     taskSkill = "fit";
-                } else if (checkedId == R.id.socialEdit) {
+                } else if (checkedId == R.id.socialRadioEdit) {
                     taskSkill = "social";
                     System.out.println("Social WORKS");
-                } else if (checkedId == R.id.careerEdit) {
+                } else if (checkedId == R.id.careerRadioEdit) {
                     taskSkill = "career";
-                } else if (checkedId == R.id.hobEdit) {
+                } else if (checkedId == R.id.hobbiesRadioEdit) {
                     taskSkill = "hobbies";
                 } else {
                     taskSkill = "n/a";
@@ -83,7 +83,7 @@ public class EditTaskActivity extends AppCompatActivity {
         });
 
 
-        this.noteSwitch = (Switch) this.findViewById(R.id.switch1);
+
 
 
 
@@ -168,20 +168,7 @@ public class EditTaskActivity extends AppCompatActivity {
 
 
 
-        if (this.noteSwitch.isChecked())
-        {
-            TimefulCore.inprogressTask.setNote("yes");
-           /* final ViewGroup rootFrameLayout = (ViewGroup) this.getWindow().peekDecorView();
-            LayoutInflater li = LayoutInflater.from(this);
-            View noteview = li.inflate(R.layout.switchonform, null);
-            LinearLayout placeHolder = (LinearLayout)this.findViewById(R.id.placeHolderLayout);
-            placeHolder.addView(noteview);
-            */
-        }
-        else
-        {
-            TimefulCore.inprogressTask.setNote("no");
-        }
+
 
         TimefulCore.inprogressTask.saveInBackground();
         Intent aIntent = new Intent(this, StartDateCalActivity.class);

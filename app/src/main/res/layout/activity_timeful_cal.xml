@@ -17,7 +17,7 @@
         android:layout_above="@+id/radioGroupComplete"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:typeface="serif"
         android:textSize="15dp"
         android:textColor="#020000" />
@@ -49,8 +49,7 @@
             android:contextClickable="false"
             android:showWeekNumber="false"
             android:layout_alignParentBottom="true"
-            android:focusableInTouchMode="false"
-            style="@style/MaterialCalendarView" />
+            android:focusableInTouchMode="false" />
 
     </LinearLayout>
 
