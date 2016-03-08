@@ -3,11 +3,8 @@ package com.thinkful.timeful;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -34,9 +31,9 @@ public class EditTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
-        EditText editName = (EditText) this.findViewById(R.id.taskEditName);
+        EditText editName = (EditText) this.findViewById(R.id.editEditName);
         editName.setText(TimefulCore.inprogressTask.getName());
-        EditText editDes = (EditText) this.findViewById(R.id.taskDescriptionEdit);
+        EditText editDes = (EditText) this.findViewById(R.id.editEditDescr);
         editDes.setText(TimefulCore.inprogressTask.getDesript());
         editRadioGroup = (RadioGroup) findViewById(R.id.radioGroupEdit);
 
@@ -148,8 +145,8 @@ public class EditTaskActivity extends AppCompatActivity {
 
     public void editButtonPushed (View v)
     {
-        EditText editName = (EditText) this.findViewById(R.id.taskEditName);
-        EditText editDes = (EditText) this.findViewById(R.id.taskDescriptionEdit);
+        EditText editName = (EditText) this.findViewById(R.id.editEditName);
+        EditText editDes = (EditText) this.findViewById(R.id.editEditDescr);
         TimefulCore.inprogressTask.setEdited(true);
         TimefulCore.inprogressTask.saveInBackground();
         TimefulCore.userTasks.remove(TimefulCore.inprogressTask);

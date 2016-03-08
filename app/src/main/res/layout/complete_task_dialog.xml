@@ -8,10 +8,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Complete Task?"
         android:id="@+id/completeTaskDialogText"
+        android:textSize="30dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="30dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -28,9 +27,9 @@
         android:layout_height="wrap_content"
         android:text="Complete"
         android:id="@+id/completeButton"
-        android:layout_alignTop="@+id/cancelButton"
-        android:layout_toRightOf="@+id/completeTaskDialogText"
-        android:layout_toEndOf="@+id/completeTaskDialogText" />
+        android:layout_alignTop="@+id/delete"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -38,6 +37,5 @@
         android:text="Delete"
         android:id="@+id/delete"
         android:layout_alignTop="@+id/cancelButton"
-        android:layout_toRightOf="@+id/cancelButton"
-        android:layout_toEndOf="@+id/cancelButton" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

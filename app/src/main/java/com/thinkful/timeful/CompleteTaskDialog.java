@@ -156,6 +156,7 @@ public class CompleteTaskDialog extends DialogFragment {
 
                         {
                             TimefulCore.staticProgress.setProgress(userExp);
+                            TimefulCore.nextLevel.setText("" + 1);
                         }
 
                         else
@@ -164,14 +165,13 @@ public class CompleteTaskDialog extends DialogFragment {
                             newExp =  userExp - TimefulCore.levelList[nextNumber - 1];
                             nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
                             TimefulCore.staticProgress.setProgress(newExp);
+                            TimefulCore.nextLevel.setText(nextNumber + "");
                         }
 
 
-                        TimefulCore.staticProgress.setProgress(newExp);
                         TimefulCore.levelUp();
-                       // nextNumber = nextNumber + 1;
                         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
-                        TimefulCore.nextLevel.setText(nextNumber + "");
+
 
                         int exp = (int) TimefulCore.currentUser.get("Exp");
                         TimefulCore.currentExp.setText(exp + "");
@@ -189,14 +189,21 @@ public class CompleteTaskDialog extends DialogFragment {
                         TimefulCore.currentSocial.setText(socialExp + "");
 
                     }
-                })
+                });
 
-                .setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
+             /*   builder.setNeutralButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }
                 });
+                */
 
+
+        builder.setNeutralButton(R.string.edit, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
 
                builder.setNegativeButton(R.string.delete, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -212,12 +219,22 @@ public class CompleteTaskDialog extends DialogFragment {
                 TimefulCore.userTasks.remove(realTask);
                 TimefulCore.levelUp();
                 userExp = (int) TimefulCore.currentUser.get("Exp");
-                newExp =  userExp - TimefulCore.levelList[(int) TimefulCore.currentUser.get("level") - 1];
-                System.out.println(newExp);
-                TimefulCore.staticProgress.setProgress(newExp);
+
+                if (userExp < 100)
+                {
+                    TimefulCore.staticProgress.setProgress(userExp);
+
+                }
+                else
+                {
+                    newExp = userExp - TimefulCore.levelList[(int) TimefulCore.currentUser.get("level") - 1];
+                    System.out.println(newExp);
+                    TimefulCore.staticProgress.setProgress(newExp);
+                }
                 nextNumber =  (int) TimefulCore.currentUser.get("level") + 1;
                 TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
                 TimefulCore.nextLevel.setText(nextNumber + "");
+                TimefulCore.currentExp.setText(userExp + "");
                 TimefulCore.updateData(TimefulCore.staticAdapter);
 
             }

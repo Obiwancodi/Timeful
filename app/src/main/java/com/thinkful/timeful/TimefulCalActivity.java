@@ -29,6 +29,7 @@ public class TimefulCalActivity extends AppCompatActivity
     private int min;
     private RadioGroup repeatGroup;
     private Date date;
+    private long mili;
 
 
 
@@ -77,8 +78,11 @@ public class TimefulCalActivity extends AppCompatActivity
        cv.setFirstDayOfWeek(1);
        Calendar x = Calendar.getInstance();
        date = x.getTime();
-       long lonDate = date.getTime();
-       cv.setMinDate(lonDate);
+       if(android.os.Build.VERSION.SDK_INT >= 22) {
+           cv.setMinDate(x.getTimeInMillis());
+       }
+
+
        Calendar start = Calendar.getInstance();
        y = start.get(Calendar.YEAR);
        mon = start.get(Calendar.MONTH);

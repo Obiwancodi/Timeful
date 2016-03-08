@@ -27,11 +27,11 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/taskEditName"
+            android:id="@+id/editEditName"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/taskDescriptionEdit"
-            android:layout_alignEnd="@+id/taskDescriptionEdit"
+            android:layout_alignRight="@+id/editEditDescr"
+            android:layout_alignEnd="@+id/editEditDescr"
             android:hint="Task Name"
             android:layout_below="@+id/textViewEdit"
             android:gravity="center_horizontal"
@@ -41,14 +41,14 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/taskDescriptionEdit"
+            android:id="@+id/editEditDescr"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:gravity="center_horizontal"
             android:hint="Task Description"
-            android:layout_below="@+id/taskEditName"
+            android:layout_below="@+id/editEditName"
             android:typeface="serif" />
 
     <LinearLayout
@@ -68,7 +68,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Task Skill"
                 android:id="@+id/textView7"
-                android:layout_below="@+id/taskDescriptionEdit"
+                android:layout_below="@+id/editEditDescr"
                 android:typeface="serif" />
 
             <RadioGroup

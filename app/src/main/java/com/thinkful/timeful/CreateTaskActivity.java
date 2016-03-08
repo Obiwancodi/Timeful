@@ -45,7 +45,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroupEdit);
         diffucltySeekBar = (SeekBar) findViewById(R.id.editSeekBar);
 
-        TextView taskNameTV = (TextView) this.findViewById(R.id.taskEditName);
+        TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
        if(taskNameTV.requestFocus())
         {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -130,8 +130,8 @@ public class CreateTaskActivity extends AppCompatActivity {
 
     public void onCreateTaskButtonPushed(View v)
     {
-        TextView taskNameTV = (TextView) this.findViewById(R.id.taskEditName);
-        TextView taskDesTV = (TextView) this.findViewById(R.id.taskDescriptionEdit);
+        TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
+        TextView taskDesTV = (TextView) this.findViewById(R.id.editEditDescr);
 
 
         ParseUser currentUser = ParseUser.getCurrentUser();
