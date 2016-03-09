@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.text.DateFormat;
@@ -30,6 +31,7 @@ public class TimefulCalActivity extends AppCompatActivity
     private RadioGroup repeatGroup;
     private Date date;
     private long mili;
+    private boolean repeat = false;
 
 
 
@@ -48,19 +50,23 @@ public class TimefulCalActivity extends AppCompatActivity
                 if (checkedId == R.id.repeatNever) {
                     TimefulCore.inprogressTask.setReType("Never");
                     TimefulCore.inprogressTask.saveInBackground();
+                    repeat = true;
 
                 } else if (checkedId == R.id.repeatDay) {
                     TimefulCore.inprogressTask.setReType("day");
                     TimefulCore.inprogressTask.saveInBackground();
+                    repeat = true;
                 }
                 else if (checkedId == R.id.repeatWeek) {
                     TimefulCore.inprogressTask.setReType("week");
                     TimefulCore.inprogressTask.saveInBackground();
+                    repeat = true;
 
                 } else if (checkedId == R.id.repeatMonth) {
 
                     TimefulCore.inprogressTask.setReType("month");
                     TimefulCore.inprogressTask.saveInBackground();
+                    repeat = true;
                 } else {
 
                 }
@@ -100,46 +106,46 @@ public class TimefulCalActivity extends AppCompatActivity
 
     public void finishButtonClicked(View v)
     {
-        Calendar c = Calendar.getInstance();
-        hour = 23;
-        min = 59;
-
-        c.set(y, mon, d, hour, min);
-
-        TimefulCore.theDate= c.getTime();
-        TimefulCore.inprogressTask.setEnd(TimefulCore.theDate);
-        date = TimefulCore.theDate;
-
-        Calendar cc = Calendar.getInstance();
-        cc.setTime(date);
-        System.out.println(TimefulCore.inprogressTask.getReType());
-
-        if (TimefulCore.inprogressTask.getReType().equals("day"))
+        if (!repeat)
         {
-            cc.add(Calendar.DATE, 1);
-            date = cc.getTime();
-            TimefulCore.inprogressTask.setRepeat(date);
+            Toast notRepeat = Toast.makeText(getApplicationContext(),"Please Select Repeat Option",Toast.LENGTH_SHORT);
+            notRepeat.show();
         }
+        else {
+            Calendar c = Calendar.getInstance();
+            hour = 23;
+            min = 59;
 
-        else if (TimefulCore.inprogressTask.getReType().equals("week"))
-        {
-            cc.add(Calendar.DATE, 7);
-            date = cc.getTime();
-            TimefulCore.inprogressTask.setRepeat(date);
+            c.set(y, mon, d, hour, min);
+
+            TimefulCore.theDate = c.getTime();
+            TimefulCore.inprogressTask.setEnd(TimefulCore.theDate);
+            date = TimefulCore.theDate;
+
+            Calendar cc = Calendar.getInstance();
+            cc.setTime(date);
+            System.out.println(TimefulCore.inprogressTask.getReType());
+
+            if (TimefulCore.inprogressTask.getReType().equals("day")) {
+                cc.add(Calendar.DATE, 1);
+                date = cc.getTime();
+                TimefulCore.inprogressTask.setRepeat(date);
+            } else if (TimefulCore.inprogressTask.getReType().equals("week")) {
+                cc.add(Calendar.DATE, 7);
+                date = cc.getTime();
+                TimefulCore.inprogressTask.setRepeat(date);
+            } else if (TimefulCore.inprogressTask.getReType().equals("month")) {
+                cc.add(Calendar.MONTH, 1);
+                date = cc.getTime();
+                TimefulCore.inprogressTask.setRepeat(date);
+            }
+
+            TimefulCore.inprogressTask.saveInBackground();
+            TimefulCore.isSaved = true;
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
         }
-
-        else if (TimefulCore.inprogressTask.getReType().equals("month"))
-        {
-            cc.add(Calendar.MONTH,1);
-            date = cc.getTime();
-            TimefulCore.inprogressTask.setRepeat(date);
-        }
-
-        TimefulCore.inprogressTask.saveInBackground();
-        TimefulCore.isSaved = true;
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
     }
 
 

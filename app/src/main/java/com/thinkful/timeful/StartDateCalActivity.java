@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 import android.view.View;
@@ -22,15 +23,38 @@ public class StartDateCalActivity extends AppCompatActivity {
     private RadioGroup repeatGroup;
     private Date date;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_date_cal);
 
-
+        RadioButton never = (RadioButton) findViewById(R.id.repeatNeverEdit);
+        RadioButton day = (RadioButton) findViewById(R.id.repeatDayEdit);
+        RadioButton week = (RadioButton) findViewById(R.id.repeatWeekEdit);
+        RadioButton month = (RadioButton) findViewById(R.id.repeatMonthEdit);
 
 
         repeatGroup =  (RadioGroup) findViewById(R.id.radioGroupCompleteEdit);
+        if (TimefulCore.inprogressTask.getReType().equals("Never"))
+        {
+           never.setChecked(true);
+        }
+
+        else if (TimefulCore.inprogressTask.getReType().equals("day"))
+        {
+            day.setChecked(true);
+        }
+
+        else if (TimefulCore.inprogressTask.getReType().equals("week"))
+        {
+            week.setChecked(true);
+        }
+
+        else if (TimefulCore.inprogressTask.getReType().equals("month"))
+        {
+            month.setChecked(true);
+        }
         repeatGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -65,6 +89,8 @@ public class StartDateCalActivity extends AppCompatActivity {
     {
         CalendarView cv = (CalendarView) this.findViewById(R.id.calendarViewEdit);
         cv.setFirstDayOfWeek(1);
+        long lDate = TimefulCore.editTask.getEnd().getTime();
+        cv.setDate(lDate,false,true);
         Calendar x = Calendar.getInstance();
         date = x.getTime();
         if(android.os.Build.VERSION.SDK_INT >= 22) {

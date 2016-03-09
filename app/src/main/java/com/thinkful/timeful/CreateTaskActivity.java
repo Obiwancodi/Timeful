@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.parse.ParseUser;
 
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Toast;
 
 public class CreateTaskActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class CreateTaskActivity extends AppCompatActivity {
     private Switch noteSwitch;
     private Context mContext;
     private RadioGroup mRadioGroup;
-    private String taskSkill;
+    private String taskSkill = null;
     private SeekBar diffucltySeekBar;
     private TextView diffExp;
     private TextView expText;
@@ -63,8 +64,9 @@ public class CreateTaskActivity extends AppCompatActivity {
                     taskSkill = "career";
                 } else if (checkedId == R.id.hobbiesRadio) {
                     taskSkill = "hobbies";
-                } else {
-                    taskSkill = "n/a";
+                } else
+                {
+
                 }
             }
         });
@@ -130,42 +132,43 @@ public class CreateTaskActivity extends AppCompatActivity {
 
     public void onCreateTaskButtonPushed(View v)
     {
-        TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
-        TextView taskDesTV = (TextView) this.findViewById(R.id.editEditDescr);
-
-
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null)
+        if (taskSkill == null)
         {
-            Tasks tasks = new Tasks();
-            tasks.setUser(ParseUser.getCurrentUser());
-            tasks.setName(taskNameTV.getText().toString());
-            tasks.setDesript(taskDesTV.getText().toString());
-            tasks.setCompleted(false);
-            tasks.setSkill(taskSkill);
-            tasks.setExp(exp);
-            tasks.setSkillPoints(skillExp);
-            tasks.setExpired(false);
-            tasks.setCanceled(false);
-            tasks.setEdited(false);
-
-
-
-
-
-
-            TimefulCore.inprogressTask = tasks;
-            Log.i("TASK", tasks.getName());
-            Intent aIntent = new Intent(this, TimefulCalActivity.class);
-            aIntent.putExtra("Task", tasks);
-            this.startActivityForResult(aIntent, 1);
-
-        }
-        else
-        {
-            // show the signup or login screen
+            Toast noRadio = Toast.makeText(getApplicationContext(),"Please select Task Skill",Toast.LENGTH_SHORT);
+            noRadio.show();
         }
 
+        else {
+            TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
+            TextView taskDesTV = (TextView) this.findViewById(R.id.editEditDescr);
+
+
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            if (currentUser != null) {
+                Tasks tasks = new Tasks();
+                tasks.setUser(ParseUser.getCurrentUser());
+                tasks.setName(taskNameTV.getText().toString());
+                tasks.setDesript(taskDesTV.getText().toString());
+                tasks.setCompleted(false);
+                tasks.setSkill(taskSkill);
+                tasks.setExp(exp);
+                tasks.setSkillPoints(skillExp);
+                tasks.setExpired(false);
+                tasks.setCanceled(false);
+                tasks.setEdited(false);
+
+
+                TimefulCore.inprogressTask = tasks;
+                Log.i("TASK", tasks.getName());
+                Intent aIntent = new Intent(this, TimefulCalActivity.class);
+                aIntent.putExtra("Task", tasks);
+                this.startActivityForResult(aIntent, 1);
+
+            }
+            else {
+                // show the signup or login screen
+            }
+        }
 
 
 

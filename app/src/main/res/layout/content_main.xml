@@ -18,13 +18,13 @@
         android:id="@+id/linearLayout"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/expBar"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:weightSum="1">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="40dp" />
+            android:layout_height="443dp" />
 
 
     </LinearLayout>

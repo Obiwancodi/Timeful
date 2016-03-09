@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,12 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        TextView emailTV = (TextView) this.findViewById(R.id.emailRegister);
+
+        if(emailTV.requestFocus())
+        {
+            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        }
 
     }
 
@@ -61,7 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast badEmailToast = Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT);
                         badEmailToast.show();
                     } else {
-                        Log.i("WRONG EMAIL", "" + e.getCode());
+                        Toast notThere = Toast.makeText(getApplicationContext(),"Try Again", Toast.LENGTH_SHORT);
+                        notThere.show();
                     }
                 }
 

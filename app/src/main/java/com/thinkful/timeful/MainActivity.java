@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private int newExp;
 
 
-    /*
-    Query all tasks if all task expired than penaltiy by setting it to True and take exp hit
-     */
+
 
     private static class UpdateLay extends LinearLayoutManager {
 
