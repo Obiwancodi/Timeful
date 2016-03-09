@@ -160,7 +160,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        FloatingActionButton fabLogout = (FloatingActionButton) findViewById(R.id.fabLogout);
+        fabLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logoutpush(view);
 
+
+            }
+        });
 
 
 
@@ -250,7 +258,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    public void logoutpush(View v)
+    {
+        ParseUser.logOut();
+        this.onBackPressed();
+    }
 
 
 

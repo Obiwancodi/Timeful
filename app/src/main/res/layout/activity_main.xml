@@ -18,4 +18,14 @@
         app:backgroundTint="#2D5933"
         android:adjustViewBounds="false" />
 
+    <android.support.design.widget.FloatingActionButton android:id="@+id/fabLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_delete"
+        android:tint="#ffffff"
+        app:backgroundTint="#2D5933"
+        android:adjustViewBounds="false" />
+
 </android.support.design.widget.CoordinatorLayout>

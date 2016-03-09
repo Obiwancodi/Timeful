@@ -33,6 +33,11 @@ public class LoginActivity extends AppCompatActivity {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
 
+        if(ParseUser.getCurrentUser() != null)
+        {
+            TimefulCore.currentUser = ParseUser.getCurrentUser();
+            loginPush();
+        }
     }
 
     public void loginButtonClicked(View v)
