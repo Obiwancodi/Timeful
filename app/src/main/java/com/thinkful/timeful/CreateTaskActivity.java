@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -45,6 +46,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroupEdit);
         diffucltySeekBar = (SeekBar) findViewById(R.id.editSeekBar);
+
 
         TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
        if(taskNameTV.requestFocus())

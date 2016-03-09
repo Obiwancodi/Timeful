@@ -129,7 +129,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         ParseObject task = TimefulCore.userTasks.get(i);
         System.out.println(TimefulCore.userTasks.size());
         Tasks realTask = (Tasks) task;
-        viewHolder.setText(realTask.getName(),realTask.getEnd());
+        viewHolder.setText(realTask.getName(),realTask.getEnd(),realTask.getDesript());
     }
 
     @Override
@@ -150,14 +150,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView nameText;
         private TextView dueText;
+        private TextView desText;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nameText = (TextView) itemView.findViewById(R.id.nameText);
             dueText = (TextView) itemView.findViewById(R.id.dueDateText);
+            desText = (TextView) itemView.findViewById(R.id.itemDes);
         }
 
-        public void setText(String taskName,Date dueDate) {
+        public void setText(String taskName,Date dueDate,String taskDes) {
             this.nameText.setText(taskName);
             DateFormat[] formats = new DateFormat[] {
                     DateFormat.getDateInstance(),
@@ -165,6 +167,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                     DateFormat.getTimeInstance(),
             };
             this.dueText.setText(formats[1].format(dueDate));
+            this.desText.setText(taskDes);
         }
     }
 
