@@ -87,7 +87,8 @@ public class EditTaskActivity extends AppCompatActivity {
          expEditText = (TextView) findViewById(R.id.editExpText);
         expEditText.setText(TimefulCore.inprogressTask.getExp() + "");
          skillEditText = (TextView) findViewById(R.id.skillEditText);
-        skillEditText.setText(TimefulCore.inprogressTask.getSkill() + "");
+        skillExp = TimefulCore.inprogressTask.getExp()/4;
+        skillEditText.setText(skillExp + "");
          diffExp = (TextView) findViewById(R.id.diffEdtitText);
         diffExp.setText(diffSetting(TimefulCore.inprogressTask.getExp()));
         seekBar1 = (SeekBar) findViewById(R.id.editSeekBar);
@@ -147,10 +148,10 @@ public class EditTaskActivity extends AppCompatActivity {
     {
         EditText editName = (EditText) this.findViewById(R.id.editEditName);
         EditText editDes = (EditText) this.findViewById(R.id.editEditDescr);
-        TimefulCore.inprogressTask.setEdited(true);
-        TimefulCore.inprogressTask.saveInBackground();
-        TimefulCore.userTasks.remove(TimefulCore.inprogressTask);
-        TimefulCore.staticAdapter.notifyDataSetChanged();
+        TimefulCore.editTask = TimefulCore.inprogressTask;
+
+        //TimefulCore.userTasks.remove(TimefulCore.inprogressTask);
+        //TimefulCore.staticAdapter.notifyDataSetChanged();
         TimefulCore.inprogressTask = new Tasks();
         TimefulCore.inprogressTask.setUser(ParseUser.getCurrentUser());
         TimefulCore.inprogressTask.setName(editName.getText().toString());
@@ -164,10 +165,6 @@ public class EditTaskActivity extends AppCompatActivity {
         TimefulCore.inprogressTask.setSkill(taskSkill);
 
 
-
-
-
-        TimefulCore.inprogressTask.saveInBackground();
         Intent aIntent = new Intent(this, StartDateCalActivity.class);
         aIntent.putExtra("Task", TimefulCore.inprogressTask);
         this.startActivityForResult(aIntent, 1);

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.DialogInterface;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -94,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
         TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
         TimefulCore.nextLevel.setText(nextNumber + "");
+        TimefulCore.dialogViewGroup = (ViewGroup) findViewById(android.R.id.content);
+        TimefulCore.mLayoutInflater = getLayoutInflater();
+        System.out.println(TimefulCore.dialogViewGroup);
+
 
 
       int userExp = (int) TimefulCore.currentUser.get("Exp");
@@ -257,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
 

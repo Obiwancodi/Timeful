@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/dialogRelative">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Complete Task?"
+        android:text="Task Action"
         android:id="@+id/completeTaskDialogText"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cancel"
-        android:id="@+id/cancelButton"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/completeTaskDialogText"
+        android:text="Edit"
+        android:id="@+id/editButton"
+        android:background="@null"
+        android:elegantTextHeight="false"
+        android:layout_alignTop="@+id/delete"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#1b9783" />
 
     <Button
         android:layout_width="wrap_content"
@@ -29,13 +32,17 @@
         android:id="@+id/completeButton"
         android:layout_alignTop="@+id/delete"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@null"
+        android:textColor="#1b9783" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
         android:id="@+id/delete"
-        android:layout_alignTop="@+id/cancelButton"
-        android:layout_centerHorizontal="true" />
+        android:background="@null"
+        android:layout_below="@+id/completeTaskDialogText"
+        android:layout_centerHorizontal="true"
+        android:textColor="#1b9783" />
 </RelativeLayout>

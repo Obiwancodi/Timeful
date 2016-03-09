@@ -89,6 +89,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
                 System.out.println(mRecyclerView.getChildLayoutPosition(v));
               TimefulCore.thing =  mRecyclerView.getChildLayoutPosition(v);
                 ParseObject task = TimefulCore.userTasks.get(TimefulCore.thing);
+                TimefulCore.inprogressTask = (Tasks) task;
                 showDialog();
 
 

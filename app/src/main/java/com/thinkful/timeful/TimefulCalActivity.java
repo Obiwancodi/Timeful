@@ -108,7 +108,6 @@ public class TimefulCalActivity extends AppCompatActivity
 
         TimefulCore.theDate= c.getTime();
         TimefulCore.inprogressTask.setEnd(TimefulCore.theDate);
-        TimefulCore.inprogressTask.saveInBackground();
         date = TimefulCore.theDate;
 
         Calendar cc = Calendar.getInstance();
@@ -136,12 +135,12 @@ public class TimefulCalActivity extends AppCompatActivity
             TimefulCore.inprogressTask.setRepeat(date);
         }
 
+        TimefulCore.inprogressTask.saveInBackground();
         TimefulCore.isSaved = true;
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
-
 
 
 }
