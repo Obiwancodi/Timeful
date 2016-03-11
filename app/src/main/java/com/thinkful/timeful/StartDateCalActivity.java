@@ -157,6 +157,7 @@ public class StartDateCalActivity extends AppCompatActivity {
         TimefulCore.editTask.saveInBackground();
         TimefulCore.userTasks.remove(TimefulCore.editTask);
 
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);

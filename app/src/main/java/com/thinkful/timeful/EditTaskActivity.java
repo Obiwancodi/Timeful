@@ -165,7 +165,6 @@ public class EditTaskActivity extends AppCompatActivity {
         TimefulCore.inprogressTask.setSkill(taskSkill);
         TimefulCore.inprogressTask.setReType(TimefulCore.editTask.getReType());
 
-
         Intent aIntent = new Intent(this, StartDateCalActivity.class);
         aIntent.putExtra("Task", TimefulCore.inprogressTask);
         this.startActivityForResult(aIntent, 1);

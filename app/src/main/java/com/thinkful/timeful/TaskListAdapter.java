@@ -175,6 +175,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public void showDialog()
     {
         CompleteTaskDialog dialog = new CompleteTaskDialog();
+        TimefulCore.mDialog = dialog;
         dialog.show(TimefulCore.frag, "DIALOG");
 
 

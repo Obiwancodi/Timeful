@@ -46,7 +46,7 @@ public class CompleteTaskDialog extends DialogFragment {
         System.out.println("IS THIS CREATING");
         System.out.println(TimefulCore.dialogViewGroup);
         System.out.println(R.layout.complete_task_dialog);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View myView = TimefulCore.mLayoutInflater.inflate(R.layout.complete_task_dialog, null);
         Button complete = (Button) myView.findViewById(R.id.completeButton);
         Button edit = (Button) myView.findViewById(R.id.editButton);
@@ -195,6 +195,7 @@ public class CompleteTaskDialog extends DialogFragment {
                 Context context = getActivity();
                 Intent intent = new Intent(context, EditTaskActivity.class);
                 getActivity().startActivity(intent);
+                dismiss();
 
             }
         });
