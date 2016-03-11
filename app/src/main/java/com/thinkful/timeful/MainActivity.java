@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import android.content.DialogInterface;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.parse.Parse;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int nextNumber;
     private int newExp;
+    boolean doubleBackToExitPressedOnce = false;
 
 
 
@@ -69,12 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getFrag();
+
+
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -90,16 +98,16 @@ public class MainActivity extends AppCompatActivity {
         TimefulCore.currentLevel = (TextView) findViewById(R.id.currentText);
         TimefulCore.nextLevel = (TextView) findViewById(R.id.nextText);
 
-        nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
-        TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
-        TimefulCore.nextLevel.setText(nextNumber + "");
+     nextNumber = (int) TimefulCore.currentUser.get("level") + 1;
+       TimefulCore.currentLevel.setText(TimefulCore.currentUser.get("level") + "");
+       TimefulCore.nextLevel.setText(nextNumber + "");
         TimefulCore.dialogViewGroup = (ViewGroup) findViewById(android.R.id.content);
         TimefulCore.mLayoutInflater = getLayoutInflater();
         System.out.println(TimefulCore.dialogViewGroup);
 
 
 
-      int userExp = (int) TimefulCore.currentUser.get("Exp");
+     int userExp = (int) TimefulCore.currentUser.get("Exp");
         int userLevel = (int) TimefulCore.currentUser.get("level");
 
        TimefulCore.staticProgress = (ProgressBar) findViewById(R.id.expBar);
@@ -160,15 +168,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        FloatingActionButton fabLogout = (FloatingActionButton) findViewById(R.id.fabLogout);
-        fabLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logoutpush(view);
 
-
-            }
-        });
 
 
 
@@ -258,11 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void logoutpush(View v)
-    {
-        ParseUser.logOut();
-        this.onBackPressed();
-    }
+
 
 
 
@@ -273,8 +269,32 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            ParseUser.logOut();
+           TimefulCore.currentUser = ParseUser.getCurrentUser();
+            System.out.println(ParseUser.getCurrentUser());
+            Intent intent = new Intent(this, LoginActivity.class);
+            this.startActivity(intent);
+
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to Logout", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
 
 
+    }
 
 
 

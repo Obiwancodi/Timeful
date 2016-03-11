@@ -27,17 +27,23 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         TextView emailTV = (TextView) this.findViewById(R.id.emailLogin);
 
+
         if(emailTV.requestFocus())
 
         {
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
 
+
         if(ParseUser.getCurrentUser() != null)
         {
             TimefulCore.currentUser = ParseUser.getCurrentUser();
             loginPush();
         }
+
+
+
+
     }
 
     public void loginButtonClicked(View v)

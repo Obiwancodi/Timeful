@@ -46,7 +46,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
     public TaskListAdapter(Context context, RecyclerView recyclerView) {
         this.mContext = context;
         this.mRecyclerView = recyclerView;
-        queryTasks();
+       queryTasks();
 
     }
 
@@ -70,7 +70,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
 
         try
         {
-            TimefulCore.userTasks = taskQuery.find();
+          TimefulCore.userTasks = taskQuery.find();
         }
         catch (ParseException e)
         {

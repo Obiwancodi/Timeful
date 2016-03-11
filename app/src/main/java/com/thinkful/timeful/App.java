@@ -16,7 +16,7 @@ public class App extends Application {
         ParseObject.registerSubclass(Tasks.class);
         Parse.enableLocalDatastore(getApplicationContext());
         Parse.initialize(this, "emYaQufF2hj0NivpQQeRSQgxp14DOi94aUuQVmg9", "AD50YpxRLvWDxhvV3zzxjhc13GV0o3v2rvqWc4JO");
-        ParseUser.enableAutomaticUser();
+       // ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
     }

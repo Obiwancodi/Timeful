@@ -40,8 +40,7 @@ public class TimefulCalActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeful_cal);
-        RadioButton neverRadio = (RadioButton) findViewById(R.id.repeatNever);
-        neverRadio.setChecked(true);
+
 
 
 
