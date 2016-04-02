@@ -20,8 +20,6 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
-import butterknife.Bind;
-import butterknife.ButterKnife;
 public class TimefulCalActivity extends AppCompatActivity
 {
     private int y = 0;

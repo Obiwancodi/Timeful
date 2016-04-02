@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -79,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
     {
 
         super.onCreate(savedInstanceState);
+        int errorCodeCreate = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this.getApplicationContext());
+        if (errorCodeCreate != ConnectionResult.SUCCESS)
+        {
+            GoogleApiAvailability.getInstance().getErrorDialog(this,errorCodeCreate,0);
+        }
         setContentView(R.layout.activity_main);
         getFrag();
 
@@ -179,6 +186,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
+        int errorCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this.getApplicationContext());
+        if (errorCode != ConnectionResult.SUCCESS)
+        {
+            GoogleApiAvailability.getInstance().getErrorDialog(this,errorCode,0);
+        }
         this.mRecyclerView.requestLayout();
         TimefulCore.isExpired();
         int userExp = (int) TimefulCore.currentUser.get("Exp");
@@ -295,6 +307,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 
 
 

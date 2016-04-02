@@ -65,6 +65,8 @@ public class TimefulCore
 
     static CompleteTaskDialog mDialog;
 
+    static Tasks expiredTask;
+
 
     static int[] levelList = {100, 216, 351, 508, 691, 904, 1152, 1441, 1778, 2171, 2629, 3163, 3786,
             4512, 5359, 6347, 7499, 8843, 10411, 12240, 14373, 16861, 19763, 23148, 27097, 31704, 37078,
@@ -132,6 +134,7 @@ public class TimefulCore
                 user.put("Exp", userExp);
                 aTask.saveInBackground();
                 user.saveInBackground();
+                TimefulCore.expiredTask = aTask;
                 TimefulCore.userTasks.remove(aTask);
                 TimefulCore.staticAdapter.notifyDataSetChanged();
                TimefulCore.showDialog();

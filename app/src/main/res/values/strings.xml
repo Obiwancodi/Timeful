@@ -25,7 +25,7 @@
     <string name="monthly">Monthly</string>
     <string name="weekly">Weekly</string>
     <string name="trivial">Trivial</string>
-    <string name="taskExpiredString">Task has Expired</string>
+    <string name="taskExpiredString"> has Expired</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
     <string name="e_mail">e-mail</string>

@@ -19,7 +19,7 @@ public class ExpiredTaskDialog extends DialogFragment
         // Use the Builder class for convenient dialog construction
         System.out.println("IS THIS CREATING");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(R.string.taskExpiredString);
+        builder.setMessage(TimefulCore.expiredTask.getName() + R.string.taskExpiredString);
 
 
         return  builder.create();

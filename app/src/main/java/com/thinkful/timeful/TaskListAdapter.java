@@ -23,6 +23,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -87,37 +89,17 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 System.out.println(mRecyclerView.getChildLayoutPosition(v));
-              TimefulCore.thing =  mRecyclerView.getChildLayoutPosition(v);
+                TimefulCore.thing = mRecyclerView.getChildLayoutPosition(v);
                 ParseObject task = TimefulCore.userTasks.get(TimefulCore.thing);
                 TimefulCore.inprogressTask = (Tasks) task;
                 showDialog();
 
 
-
-
-
-
-
-
-
             }
 
         });
 
-        v.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                int position = mRecyclerView.getChildLayoutPosition(v);
-                ParseObject task = TimefulCore.userTasks.get(position);
-                Tasks editTask = (Tasks) task;
-                TimefulCore.inprogressTask = editTask;
-                Intent intent = new Intent(mContext, EditTaskActivity.class);
-                intent.putExtra("Task", editTask);
-                ((Activity) mContext).startActivityForResult(intent, 1);
-                System.out.println(editTask.getName());
-                return true;
-            }
-        });
+
         return new ViewHolder(v);
     }
 
@@ -129,7 +111,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         ParseObject task = TimefulCore.userTasks.get(i);
         System.out.println(TimefulCore.userTasks.size());
         Tasks realTask = (Tasks) task;
-        viewHolder.setText(realTask.getName(),realTask.getEnd(),realTask.getDesript());
+        viewHolder.setText(realTask.getName(),realTask.getEnd(),realTask.getDesript(), realTask.getExp(), realTask.getSkill(), realTask.getSkillPoints());
     }
 
     @Override
@@ -151,15 +133,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
         private TextView nameText;
         private TextView dueText;
         private TextView desText;
+        private TextView expText;
+        private TextView skillText;
+        private TextView skillExp;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nameText = (TextView) itemView.findViewById(R.id.nameText);
             dueText = (TextView) itemView.findViewById(R.id.dueDateText);
             desText = (TextView) itemView.findViewById(R.id.itemDes);
+            expText = (TextView) itemView.findViewById(R.id.taskExp);
+            skillText = (TextView) itemView.findViewById(R.id.taskSkill);
+            skillExp = (TextView) itemView.findViewById(R.id.taskSkillPoints);
         }
 
-        public void setText(String taskName,Date dueDate,String taskDes) {
+        public void setText(String taskName,Date dueDate,String taskDes,int exp, String skill, int skexp) {
             this.nameText.setText(taskName);
             DateFormat[] formats = new DateFormat[] {
                     DateFormat.getDateInstance(),
@@ -168,6 +156,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.ViewHo
             };
             this.dueText.setText(formats[1].format(dueDate));
             this.desText.setText(taskDes);
+            this.expText.setText(exp + "");
+            this.skillText.setText(skill);
+            this.skillExp.setText(skexp + "");
+
         }
     }
 

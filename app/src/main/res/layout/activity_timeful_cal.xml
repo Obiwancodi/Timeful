@@ -106,11 +106,22 @@
         android:shadowDy="0"
         android:shadowRadius="5"
         android:typeface="serif"
-        android:layout_alignTop="@+id/radioGroupComplete"
-        android:layout_alignRight="@+id/repeatText"
-        android:layout_alignEnd="@+id/repeatText"
-        android:layout_marginTop="39dp"
         android:singleLine="true"
-        android:onClick="finishButtonClicked" />
+        android:onClick="finishButtonClicked"
+        android:layout_alignBottom="@+id/radioGroupComplete"
+        android:layout_alignRight="@+id/repeatText"
+        android:layout_alignEnd="@+id/repeatText" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notifications"
+        android:id="@+id/switch1"
+        android:typeface="serif"
+        android:longClickable="false"
+        android:layout_alignTop="@+id/radioGroupComplete"
+        android:layout_alignRight="@+id/createTaskButton"
+        android:layout_alignEnd="@+id/createTaskButton"
+        android:layout_marginTop="30dp" />
 
 </RelativeLayout>

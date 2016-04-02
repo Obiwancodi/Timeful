@@ -3,7 +3,9 @@ package com.thinkful.timeful;
 import android.app.Application;
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
 
 public class App extends Application {
@@ -16,8 +18,12 @@ public class App extends Application {
         ParseObject.registerSubclass(Tasks.class);
         Parse.enableLocalDatastore(getApplicationContext());
         Parse.initialize(this, "emYaQufF2hj0NivpQQeRSQgxp14DOi94aUuQVmg9", "AD50YpxRLvWDxhvV3zzxjhc13GV0o3v2rvqWc4JO");
-       // ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParsePush.subscribeInBackground("Timeful");
+
+
+
     }
 }
