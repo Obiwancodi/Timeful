@@ -112,16 +112,4 @@
         android:layout_alignRight="@+id/repeatText"
         android:layout_alignEnd="@+id/repeatText" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notifications"
-        android:id="@+id/switch1"
-        android:typeface="serif"
-        android:longClickable="false"
-        android:layout_alignTop="@+id/radioGroupComplete"
-        android:layout_alignRight="@+id/createTaskButton"
-        android:layout_alignEnd="@+id/createTaskButton"
-        android:layout_marginTop="30dp" />
-
 </RelativeLayout>

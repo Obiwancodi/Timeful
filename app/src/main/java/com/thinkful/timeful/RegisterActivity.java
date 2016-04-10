@@ -14,11 +14,13 @@ import android.widget.Toast;
 
 import com.parse.ParseException;
 
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    final ParseQuery<ParseObject> userQuery = ParseQuery.getQuery("User");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

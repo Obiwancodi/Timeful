@@ -17,9 +17,17 @@ import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.LinkedList;
+
 public class LoginActivity extends AppCompatActivity {
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +86,20 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void registerButtonClicked(View v)
     {
-        Intent intent = new Intent(this,RegisterActivity.class);
-        this.startActivity(intent);
+        TextView emailTV = (TextView) this.findViewById(R.id.emailLogin);
+        TextView passwordTV = (TextView) this.findViewById(R.id.passwordLogin);
+
+
+        System.out.println("FUCK" + emailTV.getText().toString());
+        if (emailTV.getText().toString().isEmpty() && passwordTV.getText().toString().isEmpty()) {
+            Intent intent = new Intent(this, RegisterActivity.class);
+            this.startActivity(intent);
+        }
+
+        else {
+            Toast dumbAss = Toast.makeText(getApplicationContext(),"If you have already registered, push login; otherwise clear the fields and push register", Toast.LENGTH_LONG);
+            dumbAss.show();
+        }
     }
 
 

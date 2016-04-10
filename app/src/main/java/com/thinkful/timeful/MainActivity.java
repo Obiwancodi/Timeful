@@ -210,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (TimefulCore.inprogressTask != null && TimefulCore.isSaved)
         {
+            System.out.println("FUCKING TING SUCKs");
             TimefulCore.staticAdapter.addTask(TimefulCore.inprogressTask);
             this.mRecyclerView.requestLayout();
             TimefulCore.staticAdapter.notifyDataSetChanged();

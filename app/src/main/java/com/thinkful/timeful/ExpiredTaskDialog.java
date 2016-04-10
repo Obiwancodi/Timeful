@@ -17,9 +17,9 @@ public class ExpiredTaskDialog extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
-        System.out.println("IS THIS CREATING");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(TimefulCore.expiredTask.getName() + R.string.taskExpiredString);
+        String taskName = TimefulCore.expiredTask.getName();
+        builder.setMessage(taskName + "has expired");
 
 
         return  builder.create();

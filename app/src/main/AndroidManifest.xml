@@ -95,6 +95,7 @@
                 <category android:name="com.google.android.gcm.demo" />
             </intent-filter>
         </service>
+
     </application>
 
 </manifest>

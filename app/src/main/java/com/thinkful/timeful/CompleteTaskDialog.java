@@ -87,7 +87,7 @@ public class CompleteTaskDialog extends DialogFragment {
                 }
 
                 TimefulCore.currentUser.saveInBackground();
-                TimefulCore.isSaved = true;
+                //TimefulCore.isSaved = true;
                 // TimefulCore.inprogressTask = realTask;
                 System.out.println(realTask.getCompleted());
                 // TimefulCore.staticProgress.setProgress(TimefulCore.currentUser.getInt("Exp"));
