@@ -13,6 +13,9 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Switch;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -35,6 +38,8 @@ public class CreateTaskActivity extends AppCompatActivity {
     private TextView skillText;
     private int exp;
     private int skillExp;
+    private Switch switchButton;
+
 
 
 
@@ -46,6 +51,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroupEdit);
         diffucltySeekBar = (SeekBar) findViewById(R.id.editSeekBar);
+        switchButton = (Switch) findViewById(R.id.switch1);
 
 
         TextView taskNameTV = (TextView) this.findViewById(R.id.editEditName);
@@ -115,6 +121,22 @@ public class CreateTaskActivity extends AppCompatActivity {
                 skillText.setText(progress/4 + "");
                 exp = progress;
                 skillExp = progress/4;
+
+            }
+
+        });
+
+
+        switchButton.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+
+                if(isChecked){
+
+                }
+
+
 
             }
 

@@ -22,13 +22,15 @@ public class App extends Application {
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
 
-        /*ParseCurrentInstallationController controller = ParseCorePlugins.getInstance().getCurrentInstallationController();
+        /*
+        ParseCurrentInstallationController controller = ParseCorePlugins.getInstance().getCurrentInstallationController();
         controller.clearFromDisk();
         controller.clearFromMemory();
-        */
+         */
+
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
-        ParsePush.subscribeInBackground("Timeful");
+        ParsePush.subscribeInBackground("Test");
 
 
 

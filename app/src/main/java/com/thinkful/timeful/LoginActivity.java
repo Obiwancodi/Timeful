@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView passwordTV = (TextView) this.findViewById(R.id.passwordLogin);
 
 
-        System.out.println("FUCK" + emailTV.getText().toString());
+
         if (emailTV.getText().toString().isEmpty() && passwordTV.getText().toString().isEmpty()) {
             Intent intent = new Intent(this, RegisterActivity.class);
             this.startActivity(intent);
